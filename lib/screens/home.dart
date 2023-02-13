@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redditech/components/bottom_navbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               'Hello worldII',
             ),
-            Icon(Icons.usb_rounded, )
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }
