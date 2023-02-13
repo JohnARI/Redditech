@@ -19,8 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
             Text(
-              'Hello world',
+              'Hello worldII',
             ),
+            Icon(Icons.usb_rounded, )
           ],
         ),
       ),

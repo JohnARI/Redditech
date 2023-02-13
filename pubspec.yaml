@@ -59,7 +59,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
-    - family : IBM
+    - family : IBM Plex Sans
       fonts:
         - asset: assets/fonts/regular/IBM-regular.ttf
         - asset: assets/fonts/regular/IBM-regular-italic.ttf

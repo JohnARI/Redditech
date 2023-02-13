@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/spashscreen_wrapper.dart';
+import 'package:redditech/screens/splashscreen_wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Redditech',
       home: const SpashScreenWrapper(),
       theme: ThemeData(
-        fontFamily: 'IBM',
+        fontFamily: 'IBM Plex Sans',
 
       ),
     );
