@@ -58,6 +58,21 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family : IBM
+      fonts:
+        - asset: assets/fonts/regular/IBM-regular.ttf
+        - asset: assets/fonts/regular/IBM-regular-italic.ttf
+          style: italic
+        - asset: assets/fonts/light/IBM-light.ttf
+        - asset: assets/fonts/light/IBM-light-italic.ttf
+          style: italic
+        - asset: assets/fonts/medium/IBM-medium.ttf
+        - asset: assets/fonts/medium/IBM-medium-italic.ttf
+          style: italic
+        - asset: assets/fonts/semi-bold/IBM-semi-bold.ttf
+        - asset: assets/fonts/semi-bold/IBM-semi-bold-italic.ttf
+          style: italic
 
   # To add assets to your application, add an assets section, like this:
   # assets:
