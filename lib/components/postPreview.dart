@@ -2,23 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:redditech/common/const.dart';
+import 'package:intl/intl.dart';
 
 class PostPreview extends StatefulWidget {
-  const PostPreview({super.key});
+  const PostPreview(
+      {super.key,
+      required this.subreddit,
+      required this.username,
+      required this.title,
+      required this.profilePicture,
+      required this.image,
+      required this.timestamp,
+      required this.upVotes,
+      required this.downVotes,
+      required this.comments});
+
+  final String subreddit;
+  final String username;
+  final String title;
+  final String profilePicture;
+  final String image;
+  final int timestamp;
+  final int upVotes;
+  final int downVotes;
+  final int comments;
 
   @override
   State<PostPreview> createState() => _PostPreviewState();
 }
 
 class _PostPreviewState extends State<PostPreview> {
-  String subreddit = 'r/FlutterDev';
-  String username = 'u/Redditech';
-  String title = 'Flutter is awesome!';
-  String profilePicture = 'https://googleflutter.com/sample_image.jpg';
-  String image = 'https://googleflutter.com/sample_image.jpg';
-  int upVotes = 100;
-  int downVotes = 10;
-  int comments = 10;
+  final df = new DateFormat('dd-MM-yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +43,59 @@ class _PostPreviewState extends State<PostPreview> {
           children: <Widget>[
             Padding(
               padding:
-                  const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+                  const EdgeInsets.only(left: 24.0, top: 16.0, right: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  CircleAvatar(
+                  const CircleAvatar(
                       radius: 32,
                       backgroundImage: NetworkImage(
                           'https://googleflutter.com/sample_image.jpg')),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(subreddit, style: TextStyle(color: medium0)),
-                      SizedBox(height: 4),
-                      Text(username, style: TextStyle(color: medium0)),
+                      Row(
+                        children: [
+                          Text(widget.subreddit,
+                              style: const TextStyle(
+                                  color: medium0,
+                                  fontFamily: "IBM Plex Sans Regular",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal)),
+                          const Text(
+                            ' • ',
+                            style: TextStyle(
+                                color: medium0,
+                                fontFamily: "IBM Plex Sans Regular",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          Text(
+                              df.format(new DateTime.fromMillisecondsSinceEpoch(
+                                      widget.timestamp * 1000)
+                                  .toUtc()),
+                              style: const TextStyle(
+                                  color: medium0,
+                                  fontFamily: "IBM Plex Sans Regular",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300)),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(widget.username,
+                          style: const TextStyle(
+                              color: medium0,
+                              fontFamily: "IBM Plex Sans Thin",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300)),
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.all(0.0),
               child: Row(
@@ -56,39 +103,53 @@ class _PostPreviewState extends State<PostPreview> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, bottom: 16.0),
-                    child: Text(title),
+                        left: 24.0, right: 24.0, bottom: 16.0),
+                    child: Text(
+                      widget.title,
+                      style: const TextStyle(
+                          fontFamily: "IBM Plex Sans Semibold",
+                          fontSize: 19.2,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
             ),
-            Image.network(image),
+            Padding(
+              padding: const EdgeInsets.only(left: 24, right: 24),
+              child: Image.network(widget.image,
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.3),
+            ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 16, right: 16, bottom: 16, top: 16),
+                  left: 24, right: 24, bottom: 16, top: 16),
               child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
                 Row(
                   children: [
-                    Icon(Icons.thumb_up, color: neutralDark2),
-                    SizedBox(width: 4),
-                    Text(upVotes.toString()),
+                    const Icon(Icons.keyboard_arrow_up, color: neutralDark2),
+                    const SizedBox(width: 4),
+                    Text(widget.upVotes.toString()),
                   ],
                 ),
-                SizedBox(width: 16),
-                Row(
-                  children: [
-                    Icon(Icons.thumb_down, color: neutralDark2),
-                    SizedBox(width: 4),
-                    Text(downVotes.toString()),
-                  ],
-                ),
+                const SizedBox(width: 16),
+                // Row(
+                //   children: [
+                //     const Icon(Icons.keyboard_arrow_down, color: neutralDark2),
+                //     const SizedBox(width: 4),
+                //     Text(downVotes.toString()),
+                //   ],
+                // ),
+                const Icon(Icons.keyboard_arrow_down, color: neutralDark2),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(Icons.mode_comment, color: neutralDark2),
-                      SizedBox(width: 4),
-                      Text(comments.toString()),
+                      const Icon(Icons.chat_bubble_outline,
+                          color: neutralDark2),
+                      const SizedBox(width: 4),
+                      Text(widget.comments.toString()),
                     ],
                   ),
                 ),

@@ -15,10 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Redditech',
       home: const SpashScreenWrapper(),
       theme: ThemeData(
-        fontFamily: 'IBM Plex Sans',
-
+        fontFamily: 'IBM Plex Sans Regular',
       ),
     );
   }
 }
-
