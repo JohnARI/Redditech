@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:redditech/components/home_page.dart';
 
 // Constants of colors
 
@@ -21,3 +23,13 @@ const neutralMedium1 = Color(0xffCED4DA);
 const neutralMedium2 = Color(0xffDEE2E6);
 const neutralMedium3 = Color(0xffE9ECEF);
 const neutralLight0 = Color(0xffF8F9FA);
+
+
+const screens = [
+  Text('Home'),
+  Text('Communities'),
+  Text('Add'),
+  Text('Search'),
+  Text('Profile'),
+  
+];
