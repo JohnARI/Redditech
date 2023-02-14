@@ -21,10 +21,12 @@ class MyAppbar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.only(left: 24.0, bottom: 10),
                   child: Text('Home',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          fontFamily: "IBM Plex Sans Semibold",
+                          fontSize: 30,
+                          color: Colors.white)),
                 ),
                 Container(
                   padding: const EdgeInsets.only(bottom: 10, top: 5),
@@ -35,18 +37,32 @@ class MyAppbar extends StatelessWidget {
                       topRight: Radius.circular(15),
                     ),
                   ),
-                  child: Center(child: Text(title)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Text('Popular'),
+                        Text('Lastest'),
+                        Text('Upvotes'),
+
+
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
           pinned: true,
           backgroundColor: medium0,
-          expandedHeight: 200,
-          flexibleSpace: FlexibleSpaceBar(
-            background: SafeArea(
-              child: SvgPicture.asset(
+          expandedHeight: 150,
+          flexibleSpace: SafeArea(
+            child: FlexibleSpaceBar(
+              background: SvgPicture.asset(
                 'assets/images/logos/logo_dark.svg',
+                fit: BoxFit.fitWidth,
+                color: dark1.withOpacity(0.1),
               ),
             ),
           ),

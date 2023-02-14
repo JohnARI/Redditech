@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/postPreview.dart';
+import '../components/post_preview.dart';
 
 // Constants of colors
 
@@ -24,22 +24,20 @@ const neutralMedium2 = Color(0xffDEE2E6);
 const neutralMedium3 = Color(0xffE9ECEF);
 const neutralLight0 = Color(0xffF8F9FA);
 
-
 const screens = [
   PostPreview(
-                subreddit: 'r/FlutterDev',
-                username: 'u/FlutterDev',
-                title: 'Fuck flutter',
-                profilePicture: 'https://googleflutter.com/sample_image.jpg',
-                image: 'https://googleflutter.com/sample_image.jpg',
-                timestamp: 1620000000,
-                upVotes: 100,
-                downVotes: 0,
-                comments: 10,
-              ),
+    subreddit: 'r/FlutterDev',
+    username: 'u/FlutterDev',
+    title: 'Fuck flutter',
+    profilePicture: 'https://googleflutter.com/sample_image.jpg',
+    image: 'https://googleflutter.com/sample_image.jpg',
+    timestamp: 1620000000,
+    upVotes: 100,
+    downVotes: 0,
+    comments: 10,
+  ),
   Text('Communities'),
   Text('Add'),
   Text('Search'),
   Text('Profile'),
-  
 ];

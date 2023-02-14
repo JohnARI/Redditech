@@ -39,6 +39,7 @@ dependencies:
   flutter_snake_navigationbar: ^0.6.1
   flutter_svg: ^1.1.6
   intl: ^0.18.0
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:

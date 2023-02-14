@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:redditech/common/const.dart';
 import 'package:intl/intl.dart';
 
@@ -32,7 +30,7 @@ class PostPreview extends StatefulWidget {
 }
 
 class _PostPreviewState extends State<PostPreview> {
-  final df = new DateFormat('dd-MM-yyyy');
+  final df = DateFormat('dd-MM-yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,7 @@ class _PostPreviewState extends State<PostPreview> {
                                 fontWeight: FontWeight.w300),
                           ),
                           Text(
-                              df.format(new DateTime.fromMillisecondsSinceEpoch(
+                              df.format(DateTime.fromMillisecondsSinceEpoch(
                                       widget.timestamp * 1000)
                                   .toUtc()),
                               style: const TextStyle(
