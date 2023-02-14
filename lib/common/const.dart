@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:redditech/components/profile/profile.dart';
 import '../components/post_preview.dart';
 
 // Constants of colors
@@ -39,5 +39,13 @@ const screens = [
   Text('Communities'),
   Text('Add'),
   Text('Search'),
-  Text('Profile'),
+  Profile(
+    username: 'u/FlutterDev',
+    bannerSrc: 'https://i.imgur.com/tvns9yD.jpeg',
+    profileSrc: 'https://googleflutter.com/sample_image.jpg',
+    followersCount: 0,
+    bio:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    karmaCount: 100,
+  ),
 ];
