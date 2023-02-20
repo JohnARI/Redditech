@@ -34,128 +34,124 @@ class _PostPreviewState extends State<PostPreview> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 24.0, top: 16.0, right: 24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Padding(
+          padding:
+              const EdgeInsets.only(left: 24.0, top: 16.0, right: 24.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              const CircleAvatar(
+                  radius: 32,
+                  backgroundImage: NetworkImage(
+                      'https://googleflutter.com/sample_image.jpg')),
+              const SizedBox(width: 16),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const CircleAvatar(
-                      radius: 32,
-                      backgroundImage: NetworkImage(
-                          'https://googleflutter.com/sample_image.jpg')),
-                  const SizedBox(width: 16),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Text(widget.subreddit,
-                              style: const TextStyle(
-                                  color: medium0,
-                                  fontFamily: "IBM Plex Sans Regular",
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal)),
-                          const Text(
-                            ' • ',
-                            style: TextStyle(
-                                color: medium0,
-                                fontFamily: "IBM Plex Sans Regular",
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300),
-                          ),
-                          Text(
-                              df.format(DateTime.fromMillisecondsSinceEpoch(
-                                      widget.timestamp * 1000)
-                                  .toUtc()),
-                              style: const TextStyle(
-                                  color: medium0,
-                                  fontFamily: "IBM Plex Sans Regular",
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300)),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(widget.username,
+                  Row(
+                    children: [
+                      Text(widget.subreddit,
                           style: const TextStyle(
                               color: medium0,
-                              fontFamily: "IBM Plex Sans Thin",
+                              fontFamily: "IBM Plex Sans Regular",
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal)),
+                      const Text(
+                        ' • ',
+                        style: TextStyle(
+                            color: medium0,
+                            fontFamily: "IBM Plex Sans Regular",
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      Text(
+                          df.format(DateTime.fromMillisecondsSinceEpoch(
+                                  widget.timestamp * 1000)
+                              .toUtc()),
+                          style: const TextStyle(
+                              color: medium0,
+                              fontFamily: "IBM Plex Sans Regular",
                               fontSize: 16,
                               fontWeight: FontWeight.w300)),
                     ],
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 24.0, right: 24.0, bottom: 16.0),
-                    child: Text(
-                      widget.title,
+                  const SizedBox(height: 4),
+                  Text(widget.username,
                       style: const TextStyle(
-                          fontFamily: "IBM Plex Sans Semibold",
-                          fontSize: 19.2,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                          color: medium0,
+                          fontFamily: "IBM Plex Sans Thin",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w300)),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 24.0, right: 24.0, bottom: 16.0),
+                child: Text(
+                  widget.title,
+                  style: const TextStyle(
+                      fontFamily: "IBM Plex Sans Semibold",
+                      fontSize: 19.2,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 24, right: 24),
+          child: Image.network(widget.image,
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.3),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              left: 24, right: 24, bottom: 16, top: 16),
+          child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
+            Row(
+              children: [
+                const Icon(Icons.keyboard_arrow_up, color: neutralDark2),
+                const SizedBox(width: 4),
+                Text(widget.upVotes.toString()),
+              ],
+            ),
+            const SizedBox(width: 16),
+            // Row(
+            //   children: [
+            //     const Icon(Icons.keyboard_arrow_down, color: neutralDark2),
+            //     const SizedBox(width: 4),
+            //     Text(downVotes.toString()),
+            //   ],
+            // ),
+            const Icon(Icons.keyboard_arrow_down, color: neutralDark2),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Icon(Icons.chat_bubble_outline,
+                      color: neutralDark2),
+                  const SizedBox(width: 4),
+                  Text(widget.comments.toString()),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: Image.network(widget.image,
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 24, right: 24, bottom: 16, top: 16),
-              child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-                Row(
-                  children: [
-                    const Icon(Icons.keyboard_arrow_up, color: neutralDark2),
-                    const SizedBox(width: 4),
-                    Text(widget.upVotes.toString()),
-                  ],
-                ),
-                const SizedBox(width: 16),
-                // Row(
-                //   children: [
-                //     const Icon(Icons.keyboard_arrow_down, color: neutralDark2),
-                //     const SizedBox(width: 4),
-                //     Text(downVotes.toString()),
-                //   ],
-                // ),
-                const Icon(Icons.keyboard_arrow_down, color: neutralDark2),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Icon(Icons.chat_bubble_outline,
-                          color: neutralDark2),
-                      const SizedBox(width: 4),
-                      Text(widget.comments.toString()),
-                    ],
-                  ),
-                ),
-              ]),
-            ),
-          ],
+          ]),
         ),
-      ),
+      ],
     );
   }
 }
