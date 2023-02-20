@@ -2,26 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:redditech/components/bottom_navbar.dart';
 import 'package:redditech/components/appbar.dart';
 import 'package:redditech/common/const.dart';
+import 'package:redditech/screens/home/latest_screen.dart';
+import 'package:redditech/screens/home/main_home_screen.dart';
+import 'package:redditech/screens/home/popular_screen.dart';
+import 'package:redditech/screens/home/upvotes_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  int _selectedIndex = 0;
+class _MainScreenState extends State<MainScreen> {
+  int _page = 0;
+  final screens = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+  ];
 
+<<<<<<< HEAD
   void _onTabIndexChanged(int index) {
     setState(() {
       _selectedIndex = index + 4;
     });
   }
 
+=======
+>>>>>>> features
   void _onSelectedIndexChanged(int index) {
     setState(() {
-      _selectedIndex = index;
+      _page = index;
     });
   }
 
@@ -35,42 +49,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           title: 'Home',
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
-          ),
-        ),
-        child: Column(
-          children: [
-            TabBar(
-              controller: TabController(length: 3, vsync: this),
-              indicatorColor: medium0,
-              labelColor: medium0,
-              unselectedLabelColor: Colors.grey,
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
-              onTap: (index) {
-                _onTabIndexChanged(index);
-                print(_selectedIndex);
-              },
-              tabs: const [
-                Tab(
-                  text: 'Popular',
-                ),
-                Tab(
-                  text: 'Latest',
-                ),
-                Tab(
-                  text: 'Upvotes',
-                ),
-              ],
-            ),
-            screens[_selectedIndex],
-          ],
-        ),
-      ),
+      body: screens[_page],
       bottomNavigationBar: BottomNavbar(
         onSelectedIndexChanged: _onSelectedIndexChanged,
       ),
