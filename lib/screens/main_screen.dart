@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       _selectedIndex = index + 4;
     });
   }
+
   void _onSelectedIndexChanged(int index) {
     setState(() {
       _selectedIndex = index;
