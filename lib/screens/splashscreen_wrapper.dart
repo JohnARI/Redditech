@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/main_screen.dart';
 
 class SpashScreenWrapper extends StatelessWidget {
@@ -6,6 +7,6 @@ class SpashScreenWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeScreen();
+    return const MainScreen();
   }
 }
