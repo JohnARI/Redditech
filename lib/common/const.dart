@@ -26,7 +26,7 @@ const neutralMedium2 = Color(0xffDEE2E6);
 const neutralMedium3 = Color(0xffE9ECEF);
 const neutralLight0 = Color(0xffF8F9FA);
 
-const screens = [
+const bottomNavbarScreens = [
   // PostPreview(
   //   subreddit: 'r/FlutterDev',
   //   username: 'u/FlutterDev',
