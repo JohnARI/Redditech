@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:redditech/screens/home/latest_screen.dart';
+import 'package:redditech/screens/home/popular_screen.dart';
+import 'package:redditech/screens/home/upvotes_screen.dart';
 import 'package:redditech/components/profile/profile.dart';
-import '../components/post_preview.dart';
 
 // Constants of colors
 
@@ -25,29 +27,33 @@ const neutralMedium3 = Color(0xffE9ECEF);
 const neutralLight0 = Color(0xffF8F9FA);
 
 const screens = [
-  PostPreview(
-    subreddit: 'r/FlutterDev',
-    username: 'u/FlutterDev',
-    title: 'Flutter is cool',
-    profilePicture: 'https://googleflutter.com/sample_image.jpg',
-    image: 'https://googleflutter.com/sample_image.jpg',
-    timestamp: 1620000000,
-    upVotes: 100,
-    downVotes: 0,
-    comments: 10,
-  ),
-  Text('Communities'),
-  Text('Add'),
-  Text('Search'),
+  // PostPreview(
+  //   subreddit: 'r/FlutterDev',
+  //   username: 'u/FlutterDev',
+  //   title: 'Fuck flutter',
+  //   profilePicture: 'https://googleflutter.com/sample_image.jpg',
+  //   image: 'https://googleflutter.com/sample_image.jpg',
+  //   timestamp: 1620000000,
+  //   upVotes: 100,
+  //   downVotes: 0,
+  //   comments: 10,
+  // ),
+  PopularScreen(),
+  LatestScreen(),
+  UpvotesScreen(),
+  UpvotesScreen(),
   Profile(
-    username: 'u/FlutterDev',
-    bannerSrc: 'https://i.imgur.com/tvns9yD.jpeg',
-    profileSrc: 'https://googleflutter.com/sample_image.jpg',
-    email: "ludo@mail.com",
-    gender: 'Male',
+    bannerSrc: "https://googleflutter.com/sample_image.jpg",
+    profileSrc: "https://googleflutter.com/sample_image.jpg",
+    username: "u/FlutterDev",
     bio:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    followersCount: 0,
-    karmaCount: 100,
+        "I am a flutter developer and I love flutter and flutter is the best framework ever and I lov reatc native and I love flutter and flutter is the best framework ever and ",
+    email: "ludovic@mail.com",
+    gender: "Table",
+    followersCount: 100,
+    karmaCount: 1000,
   ),
+  UpvotesScreen(),
+  UpvotesScreen(),
+  UpvotesScreen(),
 ];

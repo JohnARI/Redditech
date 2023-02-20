@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/home.dart';
+import 'package:redditech/screens/main_screen.dart';
 
 class SpashScreenWrapper extends StatelessWidget {
   const SpashScreenWrapper({super.key});
