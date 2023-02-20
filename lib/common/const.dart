@@ -28,7 +28,7 @@ const screens = [
   PostPreview(
     subreddit: 'r/FlutterDev',
     username: 'u/FlutterDev',
-    title: 'Fuck flutter',
+    title: 'Flutter is cool',
     profilePicture: 'https://googleflutter.com/sample_image.jpg',
     image: 'https://googleflutter.com/sample_image.jpg',
     timestamp: 1620000000,
@@ -43,9 +43,11 @@ const screens = [
     username: 'u/FlutterDev',
     bannerSrc: 'https://i.imgur.com/tvns9yD.jpeg',
     profileSrc: 'https://googleflutter.com/sample_image.jpg',
-    followersCount: 0,
+    email: "ludo@mail.com",
+    gender: 'Male',
     bio:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    followersCount: 0,
     karmaCount: 100,
   ),
 ];

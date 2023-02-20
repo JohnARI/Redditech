@@ -35,7 +35,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
         BottomNavigationBarItem(icon: Icon(Icons.person_outlined)),
       ],
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+        borderRadius: BorderRadius.only(
+            topRight: Radius.circular(15), topLeft: Radius.circular(15)),
       ),
     );
   }
