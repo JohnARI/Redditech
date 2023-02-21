@@ -34,18 +34,14 @@ flutter:
   fonts:
     - family: IBM Plex Sans
       fonts:
-        - asset: fonts/IBM-regular.ttf
-        - asset: fonts/IBM-regular-italic.ttf
-          style: italic
-        - asset: fonts/IBM-light.ttf
-        - asset: fonts/IBM-light-italic.ttf
-          style: italic
-        - asset: fonts/IBM-medium.ttf
-        - asset: fonts/IBM-medium-italic.ttf
-          style: italic
-        - asset: fonts/IBM-semi-bold.ttf
-        - asset: fonts/IBM-semi-bold-italic.ttf
-          style: italic
+        - asset: fonts/IBM_regular.ttf
+          weight: 400
+        - asset: fonts/IBM_light.ttf
+          weight: 300
+        - asset: fonts/IBM_medium.ttf
+          weight: 500
+        - asset: fonts/IBM_semi_bold.ttf
+          weight: 600
 
   assets:
     - assets/images/

@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/home/latest_screen.dart';
+import 'package:redditech/screens/communities/main_community_screen.dart';
 import 'package:redditech/screens/home/main_home_screen.dart';
-import 'package:redditech/screens/home/popular_screen.dart';
-import 'package:redditech/screens/home/upvotes_screen.dart';
-import 'package:redditech/screens/profile/profile.dart';
-import 'package:redditech/screens/auth/auth.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:redditech/services/api_client.dart';
+import 'package:redditech/screens/search/main_search_screen.dart';
 
 // Constants of colors
-
 const dark0 = Color(0xff15072C);
 const dark1 = Color(0xff2A0E58);
 const dark2 = Color(0xff3F1584);
@@ -17,7 +11,7 @@ const dark3 = Color(0xff541CB0);
 const medium0 = Color(0xff6C27DD);
 const medium1 = Color(0xff874DE5);
 const medium2 = Color(0xffA376EF);
-const medium3 = Color(0xffC1A2F6);
+const medium3 = Color(0xffD0B8FA);
 const light0 = Color(0xffF6F1FE);
 const light1 = Color(0xffFCFAFF);
 const neutralDark0 = Color(0xff212529);
@@ -30,64 +24,28 @@ const neutralMedium2 = Color(0xffDEE2E6);
 const neutralMedium3 = Color(0xffE9ECEF);
 const neutralLight0 = Color(0xffF8F9FA);
 
-const bottomNavbarScreens = [
-  // PostPreview(
-  //   subreddit: 'r/FlutterDev',
-  //   username: 'u/FlutterDev',
-  //   title: 'Fuck flutter',
-  //   profilePicture: 'https://googleflutter.com/sample_image.jpg',
-  //   image: 'https://googleflutter.com/sample_image.jpg',
-  //   timestamp: 1620000000,
-  //   upVotes: 100,
-  //   downVotes: 0,
-  //   comments: 10,
-  // ),
-  PopularScreen(),
-  LatestScreen(),
-  UpvotesScreen(),
-  UpvotesScreen(),
-  Profile(
-    bannerSrc: "https://googleflutter.com/sample_image.jpg",
-    profileSrc: "https://googleflutter.com/sample_image.jpg",
-    username: "u/FlutterDev",
-    bio:
-        "I am a flutter developer and I love flutter and flutter is the best framework ever and I lov reatc native and I love flutter and flutter is the best framework ever and ",
-    email: "ludovic@mail.com",
-    gender: "Table",
-    followersCount: 100,
-    karmaCount: 1000,
+// Border radius for containers under the appbar
+const containerBorder = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(15),
+    topRight: Radius.circular(15),
   ),
-  UpvotesScreen(),
-  UpvotesScreen(),
-  UpvotesScreen(),
+);
+
+// Screens displayed in the bottom navbar
+final bottomNavbarScreens = [
+  const HomeScreen(),
+  const CommunityScreen(),
+  const HomeScreen(),
+  const SearchScreen(),
+  const HomeScreen(),
 ];
 
-final filterScreens = [
-  const HomeScreen(),
-  const HomeScreen(),
-  const AuthScreen(),
-  const HomeScreen(),
-  Profile(
-    bannerSrc: "https://googleflutter.com/sample_image.jpg",
-    profileSrc: "https://googleflutter.com/sample_image.jpg",
-    username: "u/FlutterDev",
-    bio:
-        "I am a flutter developer and I love flutter and flutter is the best framework ever and I lov reatc native and I love flutter and flutter is the best framework ever and ",
-    email: "ludovic@mail.com",
-    gender: "Male",
-    followersCount: 100,
-    karmaCount: 1000,
-  ),
-];
-
+// Titles displayed in the appbar
 final title = [
   "Home",
-  "Community",
+  "My communities",
   "Add",
-  "Search",
+  "Search subbredit",
 ];
-
-// Create storage
-final storage = FlutterSecureStorage();
-
-Auth authentification = Auth();

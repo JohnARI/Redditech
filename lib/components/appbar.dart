@@ -21,19 +21,25 @@ class MyAppbar extends StatelessWidget {
         ),
         SizedBox(
           height: 200,
-         
           child: AppBar(
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(0),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 24.0, bottom: 10.0),
+                    padding: const EdgeInsets.only(left: 24.0, bottom: 18.0),
                     child: Text(title,
                         style: const TextStyle(
+                          shadows: [
+                            Shadow(
+                              color: neutralDark0,
+                              offset: Offset(0, 0),
+                              blurRadius: 5,
+                            ),
+                          ],
                             color: Colors.white,
-                            fontSize: 24,
-                            fontFamily: "IBM Plex Sans")),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600)),
                   ),
                 ],
               ),

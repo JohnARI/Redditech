@@ -28,15 +28,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: dark3,
-      appBar: _page == 4
+      appBar: _page == 4 // When the user is on the profile page, don't show the appbar
           ? null
           : PreferredSize(
               preferredSize: const Size.fromHeight(100.0),
               child: MyAppbar(
-                title: title[_page],
+                title: title[_page], // Get the title from the const.dart file
               ),
             ),
-      body: filterScreens[_page],
+      body: bottomNavbarScreens[_page], // Get the body from the const.dart file
       bottomNavigationBar: BottomNavbar(
         onSelectedIndexChanged: _onSelectedIndexChanged,
       ),
