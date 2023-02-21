@@ -23,8 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: dark3,
-      appBar: _page ==
-              4 // When the user is on the profile page, don't show the appbar
+      appBar: _page == 4 // When the user is on the profile page, don't show the appbar
           ? null
           : PreferredSize(
               preferredSize: const Size.fromHeight(100.0),

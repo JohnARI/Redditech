@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/auth/auth.dart';
 import 'package:redditech/screens/communities/main_community_screen.dart';
 import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/search/main_search_screen.dart';

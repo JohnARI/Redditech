@@ -72,47 +72,24 @@ class _PostPreviewState extends State<PostPreview> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  const CircleAvatar(
-                      radius: 32,
-                      backgroundImage: NetworkImage(
-                          'https://googleflutter.com/sample_image.jpg')),
-                  const SizedBox(width: 16),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Text(widget.subreddit,
-                              style: const TextStyle(
-                                  color: medium0,
-                                  fontFamily: "IBM Plex Sans Regular",
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal)),
-                          const Text(
-                            ' • ',
-                            style: TextStyle(
-                                color: medium0,
-                                fontFamily: "IBM Plex Sans Regular",
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300),
-                          ),
-                          Text(
-                              df.format(DateTime.fromMillisecondsSinceEpoch(
-                                      widget.timestamp * 1000)
-                                  .toUtc()),
-                              style: const TextStyle(
-                                  color: medium0,
-                                  fontFamily: "IBM Plex Sans Regular",
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300)),
-                        ],
+                  Row(
+                    children: [
+                      Text(widget.subreddit,
+                          style: const TextStyle(
+                              color: medium0,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal)),
+                      const Text(
+                        ' • ',
+                        style: TextStyle(
+                            color: medium0,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300),
                       ),
                       const SizedBox(height: 4),
                       Text(widget.username,
                           style: const TextStyle(
                               color: medium0,
-                              fontFamily: "IBM Plex Sans Thin",
                               fontSize: 16,
                               fontWeight: FontWeight.w300)),
                     ],
