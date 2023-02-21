@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/components/bottom_navbar.dart';
-import 'package:redditech/components/appbar.dart';
 import 'package:redditech/common/const.dart';
 import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
@@ -14,52 +12,51 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
 
     return Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
-          ),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
         ),
-        child: Column(
-          children: [
-            TabBar(
+      ),
+      child: Column(
+        children: [
+          TabBar(
+            controller: tabController,
+            indicatorColor: medium0,
+            labelColor: medium0,
+            indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
+            unselectedLabelColor: Colors.grey,
+            tabs: const [
+              Tab(
+                text: 'PopularII',
+              ),
+              Tab(
+                text: 'Latest',
+              ),
+              Tab(
+                text: 'Upvotes',
+              ),
+            ],
+          ),
+          Expanded(
+            flex: 3,
+            child: TabBarView(
               controller: tabController,
-              indicatorColor: medium0,
-              labelColor: medium0,
-              isScrollable: true,
-              unselectedLabelColor: Colors.grey,
-              tabs: const [
-                Tab(
-                  text: 'Popular',
-                ),
-                Tab(
-                  text: 'Latest',
-                ),
-                Tab(
-                  text: 'Upvotes',
-                ),
+              children: const [
+                PopularScreen(),
+                LatestScreen(),
+                UpvotesScreen(),
               ],
             ),
-            Expanded(
-              flex: 3,
-              child: TabBarView(
-                controller: tabController,
-                children: const [
-                  PopularScreen(),
-                  LatestScreen(),
-                  UpvotesScreen(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 }
