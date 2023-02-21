@@ -18,13 +18,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 3, vsync: this);
 
     return Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
-          ),
-        ),
+        decoration: containerBorder,
         child: Column(
           children: [
             TabBar(
