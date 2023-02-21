@@ -24,15 +24,6 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
   ];
 
-<<<<<<< HEAD
-  void _onTabIndexChanged(int index) {
-    setState(() {
-      _selectedIndex = index + 4;
-    });
-  }
-
-=======
->>>>>>> features
   void _onSelectedIndexChanged(int index) {
     setState(() {
       _page = index;
