@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/components/bottom_navbar.dart';
-import 'package:redditech/components/appbar.dart';
 import 'package:redditech/common/const.dart';
 import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
@@ -33,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               controller: tabController,
               indicatorColor: medium0,
               labelColor: medium0,
-              isScrollable: true,
+              indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
               unselectedLabelColor: Colors.grey,
               tabs: const [
                 Tab(

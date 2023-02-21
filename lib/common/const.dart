@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/screens/home/latest_screen.dart';
+import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
 import 'package:redditech/components/profile/profile.dart';
@@ -57,3 +58,18 @@ const bottomNavbarScreens = [
   UpvotesScreen(),
   UpvotesScreen(),
 ];
+
+final filterScreens = [
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+    const HomeScreen(),
+  ];
+
+final title = [
+    "Home",
+    "Community",
+    "Add",
+    "Search",
+  ];

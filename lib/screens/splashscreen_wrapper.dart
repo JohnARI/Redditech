@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/main_screen.dart';
 
 class SpashScreenWrapper extends StatelessWidget {
