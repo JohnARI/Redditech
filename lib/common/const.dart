@@ -3,7 +3,7 @@ import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
-import 'package:redditech/components/profile/profile.dart';
+import 'package:redditech/screens/profile/profile.dart';
 
 // Constants of colors
 
@@ -60,16 +60,26 @@ const bottomNavbarScreens = [
 ];
 
 final filterScreens = [
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
-  ];
+  const HomeScreen(),
+  const HomeScreen(),
+  const HomeScreen(),
+  const HomeScreen(),
+  Profile(
+    bannerSrc: "https://googleflutter.com/sample_image.jpg",
+    profileSrc: "https://googleflutter.com/sample_image.jpg",
+    username: "u/FlutterDev",
+    bio:
+        "I am a flutter developer and I love flutter and flutter is the best framework ever and I lov reatc native and I love flutter and flutter is the best framework ever and ",
+    email: "ludovic@mail.com",
+    gender: "Male",
+    followersCount: 100,
+    karmaCount: 1000,
+  ),
+];
 
 final title = [
-    "Home",
-    "Community",
-    "Add",
-    "Search",
-  ];
+  "Home",
+  "Community",
+  "Add",
+  "Search",
+];

@@ -34,22 +34,38 @@ class _ProfileState extends State<Profile> {
   get username => widget.username;
   get bio => widget.bio;
   get email => widget.email;
-  get password => '********';
+  get gender => widget.gender;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Header(
-            bannerSrc: widget.bannerSrc,
-            profileSrc: widget.profileSrc,
-            username: widget.username,
-            bio: widget.bio,
-            followersCount: widget.followersCount,
-            karmaCount: widget.karmaCount),
-        const Divider(color: neutralMedium3, thickness: 2.0),
-        Settings(settings: [username, bio, email, password]),
-      ],
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height - 56,
+        color: Colors.white,
+        child: Column(
+          children: [
+            Header(
+                bannerSrc: widget.bannerSrc,
+                profileSrc: widget.profileSrc,
+                username: widget.username,
+                bio: widget.bio,
+                followersCount: widget.followersCount,
+                karmaCount: widget.karmaCount),
+            const Divider(color: neutralMedium3, thickness: 2.0),
+            Settings(settings: [
+              {'value': username, 'name': 'Username', 'type': 'text'},
+              {'value': bio, 'name': 'Bio', 'type': 'text'},
+              {'value': email, 'name': 'Email', 'type': 'text'},
+              {
+                'value': gender,
+                'name': 'Gender',
+                'type': 'select',
+                'options': ['Male', 'Female', 'Other']
+              },
+            ]),
+          ],
+        ),
+      ),
     );
   }
 }
