@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key, required this.settings});
@@ -34,12 +30,11 @@ class _SettingsState extends State<Settings> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 textAlign: TextAlign.start,
                 "Settings",
                 style: TextStyle(
                   fontSize: 24,
-                  fontFamily: "IBM Plex Sans Regular",
                   color: neutralDark0,
                 ),
               ),
@@ -66,7 +61,6 @@ class _SettingsState extends State<Settings> {
                       labelText: item['name'],
                     ),
                     style: const TextStyle(
-                      fontFamily: "IBM Plex Sans Regular",
                       color: neutralDark3,
                     ),
                     enabled: isEditing,
