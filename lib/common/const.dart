@@ -4,6 +4,7 @@ import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
 import 'package:redditech/screens/profile/profile.dart';
+import 'package:redditech/screens/welcome/welcome.dart';
 
 // Constants of colors
 
@@ -62,7 +63,7 @@ const bottomNavbarScreens = [
 final filterScreens = [
   const HomeScreen(),
   const HomeScreen(),
-  const HomeScreen(),
+  const Welcome(),
   const HomeScreen(),
   Profile(
     bannerSrc: "https://googleflutter.com/sample_image.jpg",
