@@ -11,7 +11,15 @@ Future<void> apiAuth() async {
     redirectUri: Uri.parse("rien://success"),
   );
 
-  final authUrl = reddit.auth.url(['*'], 'rien', compactLogin: true);
+  final authUrl = reddit.auth.url([
+    'read',
+    'edit',
+    'mysubreddits',
+    'history',
+    'save',
+    'creddits',
+    'identity'
+  ], 'rien', compactLogin: true);
 
   final result = await FlutterWebAuth.authenticate(
       url: authUrl.toString(), callbackUrlScheme: "rien");
