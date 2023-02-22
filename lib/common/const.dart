@@ -4,7 +4,9 @@ import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
 import 'package:redditech/screens/profile/profile.dart';
-import 'package:redditech/screens/welcome/welcome.dart';
+import 'package:redditech/screens/auth/auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:redditech/services/api_client.dart';
 
 // Constants of colors
 
@@ -63,7 +65,7 @@ const bottomNavbarScreens = [
 final filterScreens = [
   const HomeScreen(),
   const HomeScreen(),
-  const Welcome(),
+  const AuthScreen(),
   const HomeScreen(),
   Profile(
     bannerSrc: "https://googleflutter.com/sample_image.jpg",
@@ -84,3 +86,8 @@ final title = [
   "Add",
   "Search",
 ];
+
+// Create storage
+final storage = FlutterSecureStorage();
+
+Auth authentification = Auth();

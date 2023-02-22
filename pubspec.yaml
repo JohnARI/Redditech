@@ -21,6 +21,7 @@ dependencies:
   liquid_pull_to_refresh: ^3.0.1
   draw: ^1.0.2
   flutter_web_auth: ^0.5.0
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   flutter_test:
