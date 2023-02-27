@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/home/main_home_screen.dart';
-import 'package:redditech/services/authentication.dart';
+import 'package:redditech/services/api_client.dart';
+import 'package:redditech/services/api_subreddits.dart';
 import 'dart:async';
 
 class AuthScreen extends StatefulWidget {
@@ -70,7 +70,18 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               debugPrint(
                   '==============================================================');
             },
-            child: const Text('Check variable isAuth'),
+            child: Text('Check variable isAuth'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () {
+              print(subreddit.test());
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('test'),
           )
         ],
       ),

@@ -71,17 +71,6 @@ class Api {
       return isAuth;
     }
   }
-
-  Future<void> test() async {
-    try {
-      Stream<Subreddit>? subReddits = await reddit?.user.subreddits(limit: 15);
-      subReddits?.forEach((element) {
-        print(element);
-      });
-    } catch (exception) {
-      print(exception);
-    }
-  }
 }
 
 const storage = FlutterSecureStorage();
