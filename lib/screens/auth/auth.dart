@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/services/authentication.dart';
+import 'dart:async';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -9,7 +11,9 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
-  Future<bool> isAuthenticated = authentification.checkIsAuth();
+  Future<bool> checkIsAuth() async {
+    return await authentification.checkIsAuth();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () async {
-              await authentification.authenticate();
+              await authentification.authenticate(context);
               debugPrint(
                   '==============================================================');
             },
@@ -62,7 +66,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () async {
-              print(isAuthenticated);
+              print(await checkIsAuth());
               debugPrint(
                   '==============================================================');
             },

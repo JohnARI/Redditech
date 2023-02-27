@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:draw/draw.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:redditech/screens/main_screen.dart';
 import 'package:redditech/services/authentication.dart';
 
 class Auth {
@@ -27,7 +29,7 @@ class Auth {
     ], 'rien', compactLogin: true);
   }
 
-  Future<bool> authenticate() async {
+  Future<bool> authenticate(context) async {
     try {
       final result = await FlutterWebAuth.authenticate(
           url: authUrl.toString(), callbackUrlScheme: "rien");
@@ -35,6 +37,10 @@ class Auth {
 
       await storage.write(key: "token", value: code);
       await reddit?.auth.authorize(code.toString());
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const MainScreen()));
 
       return checkIsAuth();
     } catch (error) {
