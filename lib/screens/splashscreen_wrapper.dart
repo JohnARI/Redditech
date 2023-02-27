@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:redditech/screens/main_screen.dart';
 import 'package:redditech/screens/auth/auth.dart';
-import 'package:redditech/services/authentication.dart';
+import 'package:redditech/services/api_client.dart';
 
 class SplashScreenWrapper extends StatefulWidget {
   const SplashScreenWrapper({super.key});

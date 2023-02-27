@@ -5,7 +5,7 @@ import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:redditech/screens/main_screen.dart';
 import 'package:redditech/services/api.dart';
 import 'package:redditech/services/api_subreddits.dart';
-import 'package:redditech/services/authentication.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Api {
   Reddit? reddit;
@@ -66,15 +66,7 @@ class Api {
       return isAuth;
     }
   }
-
-  Future<void> test() async {
-    try {
-      Stream<Subreddit>? subReddits = await reddit?.user.subreddits(limit: 15);
-      subReddits?.forEach((element) {
-        print(element);
-      });
-    } catch (exception) {
-      print(exception);
-    }
-  }
 }
+
+const storage = FlutterSecureStorage();
+Api api = Api();
