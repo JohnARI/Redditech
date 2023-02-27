@@ -39,6 +39,7 @@ class Api {
 
       await storage.write(key: "token", value: code);
       await reddit?.auth.authorize(code.toString());
+
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -68,6 +69,17 @@ class Api {
       return isAuth;
     } catch (error) {
       return isAuth;
+    }
+  }
+
+  Future<void> test() async {
+    try {
+      Stream<Subreddit>? subReddits = await reddit?.user.subreddits(limit: 15);
+      subReddits?.forEach((element) {
+        print(element);
+      });
+    } catch (exception) {
+      print(exception);
     }
   }
 }
