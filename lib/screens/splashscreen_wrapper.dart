@@ -13,7 +13,7 @@ class SplashScreenWrapper extends StatefulWidget {
 
 class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
   Future<String>? checkIsAuth() async {
-    bool goHomeScreen = await authentification.checkIsAuth();
+    bool goHomeScreen = await api.checkIsAuth();
     if (goHomeScreen) {
       return "homeScreen";
     }

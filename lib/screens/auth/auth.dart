@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/home/main_home_screen.dart';
+import 'package:redditech/services/api_subreddits.dart';
 import 'package:redditech/services/authentication.dart';
 import 'dart:async';
 
@@ -12,7 +12,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
   Future<bool> checkIsAuth() async {
-    return await authentification.checkIsAuth();
+    return await api.checkIsAuth();
   }
 
   @override
@@ -32,7 +32,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () async {
-              print(await authentification.checkIsAuth());
+              print(await api.checkIsAuth());
               debugPrint(
                   '==============================================================');
             },
@@ -43,11 +43,11 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () async {
-              await authentification.authenticate(context);
+              await api.authenticate(context);
               debugPrint(
                   '==============================================================');
             },
-            child: Text('Authentification'),
+            child: Text('Authentify'),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -71,6 +71,17 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
                   '==============================================================');
             },
             child: Text('Check variable isAuth'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () {
+              print(api.test());
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('test'),
           )
         ],
       ),
