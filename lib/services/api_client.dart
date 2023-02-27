@@ -39,6 +39,10 @@ class Api {
 
       await storage.write(key: "token", value: code);
       await reddit?.auth.authorize(code.toString());
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const MainScreen()));
 
       Navigator.pushReplacement(
           context,

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:redditech/services/api_client.dart';
 import 'package:redditech/services/api_subreddits.dart';
+=======
+import 'package:redditech/screens/home/main_home_screen.dart';
+import 'package:redditech/services/authentication.dart';
+>>>>>>> 0aa1e3d (feat(OAuth): Auth screen functionnal)
 import 'dart:async';
 
 class AuthScreen extends StatefulWidget {
@@ -12,7 +17,11 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
   Future<bool> checkIsAuth() async {
+<<<<<<< HEAD
     return await api.checkIsAuth();
+=======
+    return await authentification.checkIsAuth();
+>>>>>>> 0aa1e3d (feat(OAuth): Auth screen functionnal)
   }
 
   @override
