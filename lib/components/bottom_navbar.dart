@@ -15,13 +15,12 @@ class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return SnakeNavigationBar.color(
+      elevation: 8,
       behaviour: SnakeBarBehaviour.floating,
       snakeShape: SnakeShape.circle,
       snakeViewColor: medium0,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.grey,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
       currentIndex: _selectedIndex,
       onTap: (index) {
         setState(() => _selectedIndex = index);

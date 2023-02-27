@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+import 'package:redditech/services/api_subreddits.dart';
+import 'package:redditech/services/authentication.dart';
+import 'dart:async';
+
+class AuthScreen extends StatefulWidget {
+  const AuthScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AuthScreen> createState() => _AuthScreen();
+}
+
+class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
+  Future<bool> checkIsAuth() async {
+    return await api.checkIsAuth();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
+      child: Column(
+        children: [
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () async {
+              print(await api.checkIsAuth());
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('checkIsAuth()'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () async {
+              await api.authenticate(context);
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('Authentify'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () async {
+              String? value = await storage.read(key: "token");
+              print(value);
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('Check Token'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () async {
+              print(await checkIsAuth());
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('Check variable isAuth'),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () {
+              print(api.test());
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('test'),
+          )
+        ],
+      ),
+    );
+  }
+}

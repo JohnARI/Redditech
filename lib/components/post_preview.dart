@@ -57,14 +57,12 @@ class _PostPreviewState extends State<PostPreview> {
                       Text(widget.subreddit,
                           style: const TextStyle(
                               color: medium0,
-                              fontFamily: "IBM Plex Sans Regular",
                               fontSize: 16,
                               fontWeight: FontWeight.normal)),
                       const Text(
                         ' • ',
                         style: TextStyle(
                             color: medium0,
-                            fontFamily: "IBM Plex Sans Regular",
                             fontSize: 16,
                             fontWeight: FontWeight.w300),
                       ),
@@ -74,7 +72,6 @@ class _PostPreviewState extends State<PostPreview> {
                               .toUtc()),
                           style: const TextStyle(
                               color: medium0,
-                              fontFamily: "IBM Plex Sans Regular",
                               fontSize: 16,
                               fontWeight: FontWeight.w300)),
                     ],
@@ -83,7 +80,6 @@ class _PostPreviewState extends State<PostPreview> {
                   Text(widget.username,
                       style: const TextStyle(
                           color: medium0,
-                          fontFamily: "IBM Plex Sans Thin",
                           fontSize: 16,
                           fontWeight: FontWeight.w300)),
                 ],
@@ -103,9 +99,8 @@ class _PostPreviewState extends State<PostPreview> {
                 child: Text(
                   widget.title,
                   style: const TextStyle(
-                      fontFamily: "IBM Plex Sans Semibold",
                       fontSize: 19.2,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],

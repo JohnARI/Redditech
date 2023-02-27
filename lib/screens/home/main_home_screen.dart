@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
+import 'package:redditech/components/tabbar.dart';
 import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
@@ -17,46 +18,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     TabController tabController = TabController(length: 3, vsync: this);
 
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
-        ),
-      ),
-      child: Column(
-        children: [
-          TabBar(
-            controller: tabController,
-            indicatorColor: medium0,
-            labelColor: medium0,
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
-            unselectedLabelColor: Colors.grey,
-            tabs: const [
-              Tab(
-                text: 'PopularII',
+        decoration: containerBorder,
+        child: Column(
+          children: [
+            MyTabBar(tabController: tabController),
+            Expanded(
+              flex: 3,
+              child: TabBarView(
+                controller: tabController,
+                children: const [
+                  PopularScreen(),
+                  LatestScreen(),
+                  UpvotesScreen(),
+                ],
               ),
-              Tab(
-                text: 'Latest',
-              ),
-              Tab(
-                text: 'Upvotes',
-              ),
-            ],
-          ),
-          Expanded(
-            flex: 3,
-            child: TabBarView(
-              controller: tabController,
-              children: const [
-                PopularScreen(),
-                LatestScreen(),
-                UpvotesScreen(),
-              ],
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
   }
 }
