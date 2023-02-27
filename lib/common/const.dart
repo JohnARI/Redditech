@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:redditech/screens/auth/auth.dart';
 import 'package:redditech/screens/communities/main_community_screen.dart';
 import 'package:redditech/screens/home/main_home_screen.dart';
@@ -51,5 +50,3 @@ final title = [
   "Add",
   "Search subbredit",
 ];
-
-const storage = FlutterSecureStorage();
