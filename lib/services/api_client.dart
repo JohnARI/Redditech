@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:draw/draw.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:redditech/common/const.dart';
+import 'package:redditech/services/authentication.dart';
 
 class Auth {
   Reddit? reddit;

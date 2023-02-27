@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:redditech/components/bottom_navbar.dart';
-import 'package:redditech/components/appbar.dart';
-import 'package:redditech/common/const.dart';
-import 'package:redditech/services/api_client.dart';
-import 'package:draw/draw.dart';
+import 'package:redditech/services/authentication.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
