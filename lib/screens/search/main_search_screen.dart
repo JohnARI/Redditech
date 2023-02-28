@@ -19,6 +19,7 @@ class _SearchScreenState extends State<SearchScreen> {
           community: 'Community',
           numberOfMembers: '19504',
           bottomPadding: 59,
+          iconImg: "",
         ),
         SearchBar(),
       ],

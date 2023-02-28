@@ -1,18 +1,10 @@
 import 'dart:async';
 import 'package:draw/draw.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
-import 'package:redditech/screens/main_screen.dart';
-import 'package:redditech/services/api.dart';
 import 'package:redditech/services/api_client.dart';
 
 class ApiSubreddit {
   Future<bool> test() async {
     try {
-      // print(authUrl);
-      // String? value = await storage.read(key: "token");
-      // await reddit?.auth.authorize(value.toString());
-
       Redditor? me = await api.reddit?.user.me();
       print(me);
       return true;
@@ -23,17 +15,28 @@ class ApiSubreddit {
     }
   }
 
-  // Future<void> test2() async {
-  //   try {
-  //     Stream<Subreddit>? subReddits =
-  //         await api.reddit?.user.subreddits(limit: 15);
-  //     subReddits?.forEach((element) {
-  //       print(element);
-  //     });
-  //   } catch (exception) {
-  //     print(exception);
-  //   }
-  // }
+  Future<List<Subreddit>> getMySubreddits() async {
+    try {
+      Stream<Subreddit> subReddits = api.reddit!.user.subreddits();
+      List<Subreddit> listSubReddits = [];
+
+      await for (Subreddit subReddit in subReddits) {
+        listSubReddits.add(subReddit);
+      }
+
+      return listSubReddits;
+    } catch (exception) {
+      print(exception);
+      return List<Subreddit>.empty();
+    }
+  }
+
+  Future<void> getSubredditInfo() async {
+    try {
+      List<Subreddit>? mySubreddits = await getMySubreddits();
+      mySubreddits?.forEach((element) => {print(element.title)});
+    } catch (exception) {}
+  }
 }
 
 ApiSubreddit subreddit = ApiSubreddit();
