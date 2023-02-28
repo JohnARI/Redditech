@@ -72,17 +72,17 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
             },
             child: Text('Check variable isAuth'),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.blue,
-            ),
-            onPressed: () {
-              print(subreddit.test());
-              debugPrint(
-                  '==============================================================');
-            },
-            child: Text('test'),
-          )
+          // TextButton(
+          //   style: TextButton.styleFrom(
+          //     foregroundColor: Colors.blue,
+          //   ),
+          //   onPressed: () {
+          //     print(subreddit.getSubredditInfo());
+          //     debugPrint(
+          //         '==============================================================');
+          //   },
+          //   child: Text('test'),
+          // )
         ],
       ),
     );
