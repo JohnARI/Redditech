@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:draw/draw.dart';
+import 'package:flutter/material.dart';
 import 'package:redditech/services/api_client.dart';
 
 class ApiSubreddit {
@@ -31,11 +32,19 @@ class ApiSubreddit {
     }
   }
 
-  Future<void> getSubredditInfo() async {
+  Future<List<SubredditRef>> searchSubreddit(String query) async {
     try {
-      List<Subreddit>? mySubreddits = await getMySubreddits();
-      mySubreddits?.forEach((element) => {print(element.title)});
-    } catch (exception) {}
+      Stream<SubredditRef>? mySearch =
+          api.reddit!.subreddits.search(query, limit: 25);
+      List<SubredditRef> listSubReddits = [];
+
+      await for (SubredditRef subreddit in mySearch) {
+        listSubReddits.add(subreddit);
+      }
+      return listSubReddits;
+    } catch (exception) {
+      return List<Subreddit>.empty();
+    }
   }
 }
 
