@@ -1,8 +1,15 @@
+import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
+import 'package:redditech/services/api_subreddits.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
+  SearchBar({super.key, required this.callback});
+  // late final Future<List<SubredditRef>> searchSubreddit;
+
+  final TextEditingController inputController = TextEditingController();
+
+  final StringCallback callback;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +33,13 @@ class SearchBar extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: const TextField(
-              style: TextStyle(
+            child: TextField(
+              controller: inputController,
+              style: const TextStyle(
                 color: neutralDark1,
               ),
-              decoration: InputDecoration(
+              onEditingComplete: () => {callback(inputController.text)},
+              decoration: const InputDecoration(
                 hintText: 'Search',
                 prefixIcon: Icon(Icons.search_rounded, color: medium0),
                 border: InputBorder.none,
@@ -42,3 +51,5 @@ class SearchBar extends StatelessWidget {
     );
   }
 }
+
+typedef void StringCallback(String val);
