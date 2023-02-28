@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/components/search_bar.dart';
 import 'package:redditech/components/subreddit_list.dart';
+import 'package:redditech/models/subreddit.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -10,18 +11,17 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: const [
+      children: [
         SubredditList(
-          subredditName: 'r/ChaseAfterYourDreams',
-          community: 'Community',
-          numberOfMembers: '19504',
+          subreddits: subreddits,
           bottomPadding: 59,
           iconImg: "",
         ),
-        SearchBar(),
+        const SearchBar(),
       ],
     );
   }

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:redditech/common/const.dart';
 import 'package:redditech/components/profile/header_top.dart';
 import 'package:redditech/components/profile/header_bottom.dart';
 

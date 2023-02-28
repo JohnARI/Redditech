@@ -42,7 +42,7 @@ final bottomNavbarScreens = [
   const SearchScreen(),
   const HomeScreen(),
 ];
-
+// TODO: Transform this into a map with the title as key and the screen as value
 // Titles displayed in the appbar
 final title = [
   "Home",

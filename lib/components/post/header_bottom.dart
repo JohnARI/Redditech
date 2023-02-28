@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:redditech/common/const.dart';
-import 'package:flutter/gestures.dart';
 
 class HeaderBottom extends StatefulWidget {
   const HeaderBottom({super.key, required this.title});

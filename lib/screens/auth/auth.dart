@@ -36,7 +36,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               debugPrint(
                   '==============================================================');
             },
-            child: Text('checkIsAuth()'),
+            child: const Text('checkIsAuth()'),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -47,7 +47,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               debugPrint(
                   '==============================================================');
             },
-            child: Text('Authentify'),
+            child: const Text('Authentification'),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -59,7 +59,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               debugPrint(
                   '==============================================================');
             },
-            child: Text('Check Token'),
+            child: const Text('Check Token'),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -70,19 +70,8 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               debugPrint(
                   '==============================================================');
             },
-            child: Text('Check variable isAuth'),
-          ),
-          // TextButton(
-          //   style: TextButton.styleFrom(
-          //     foregroundColor: Colors.blue,
-          //   ),
-          //   onPressed: () {
-          //     print(subreddit.getSubredditInfo());
-          //     debugPrint(
-          //         '==============================================================');
-          //   },
-          //   child: Text('test'),
-          // )
+            child: const Text('Check variable isAuth'),
+          )
         ],
       ),
     );

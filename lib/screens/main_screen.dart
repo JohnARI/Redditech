@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:redditech/components/bottom_navbar.dart';
 import 'package:redditech/components/appbar.dart';
 import 'package:redditech/common/const.dart';
-import 'package:redditech/screens/profile/profile.dart';
-import 'package:redditech/screens/home/latest_screen.dart';
-import 'package:redditech/screens/home/main_home_screen.dart';
-import 'package:redditech/screens/home/popular_screen.dart';
-import 'package:redditech/screens/home/upvotes_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

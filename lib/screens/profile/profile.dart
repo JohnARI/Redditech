@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:redditech/components/profile/header.dart';
 import 'package:redditech/components/profile/settings.dart';
 
@@ -60,7 +58,7 @@ class _ProfileState extends State<Profile> {
                 'value': gender,
                 'name': 'Gender',
                 'type': 'select',
-                'options': ['Male', 'Female', 'Other']
+                'options': const ['Male', 'Female', 'Other']
               },
             ]),
           ],
