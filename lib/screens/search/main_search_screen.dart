@@ -16,7 +16,6 @@ class _SearchScreenState extends State<SearchScreen> {
       children: const [
         SubredditList(
           subredditName: 'r/ChaseAfterYourDreams',
-          community: 'Community',
           numberOfMembers: '19504',
           bottomPadding: 59,
           iconImg: "",
