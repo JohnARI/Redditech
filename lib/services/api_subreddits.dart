@@ -34,7 +34,7 @@ class ApiSubreddit {
   Future<void> getSubredditInfo() async {
     try {
       List<Subreddit>? mySubreddits = await getMySubreddits();
-      mySubreddits?.forEach((element) => {print(element.title)});
+      mySubreddits.forEach((element) => {print(element.title)});
     } catch (exception) {}
   }
 }
