@@ -69,7 +69,7 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               debugPrint(
                   '==============================================================');
             },
-            child: Text('Check variable isAuth'),
+            child: const Text('Check variable isAuth'),
           ),
           TextButton(
             style: TextButton.styleFrom(

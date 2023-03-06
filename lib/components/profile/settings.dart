@@ -13,7 +13,6 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   handleChangeField(item) {
-    print(item);
   }
 
   bool isEditing = false;

@@ -3,7 +3,6 @@ import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:redditech/screens/main_screen.dart';
-import 'package:redditech/services/api_subreddits.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Api {

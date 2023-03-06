@@ -1,7 +1,5 @@
-import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
-import 'package:redditech/services/api_subreddits.dart';
 
 class SearchBar extends StatelessWidget {
   SearchBar({super.key, required this.callback});
@@ -52,4 +50,4 @@ class SearchBar extends StatelessWidget {
   }
 }
 
-typedef void StringCallback(String val);
+typedef StringCallback = void Function(String val);

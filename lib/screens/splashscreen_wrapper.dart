@@ -1,9 +1,7 @@
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
-import 'package:redditech/screens/home/main_home_screen.dart';
 import 'dart:async';
 import 'package:redditech/screens/main_screen.dart';
-import 'package:redditech/screens/auth/auth.dart';
 import 'package:redditech/services/api_client.dart';
 
 class SplashScreenWrapper extends StatefulWidget {
@@ -46,9 +44,8 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
         future: checkIsAuth(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.data == "") {
-            return const AuthScreen();
+            return const MainScreen();
           } else {
-            print("I am going to the home screen.");
             return const MainScreen();
           }
         });
