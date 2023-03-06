@@ -51,7 +51,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     },
                     child: SubredditList(
                         subredditName: item.displayName,
-                        community: 'Community',
                         numberOfMembers: subscribers.toString(),
                         bottomPadding: 0,
                         iconImg: iconImg),

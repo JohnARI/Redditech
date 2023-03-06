@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 
-
 class LatestScreen extends StatefulWidget {
-  const LatestScreen({super.key});
+  const LatestScreen({super.key, required this.leftPadding, required this.rightPadding});
+  final double leftPadding;
+  final double rightPadding;
 
   @override
   State<LatestScreen> createState() => _LatestScreenState();
@@ -16,7 +17,7 @@ class _LatestScreenState extends State<LatestScreen> {
       itemCount: 10,
       itemBuilder: (context, index) {
         return Column(
-          children: const [
+          children: [
             PostPreview(
               subreddit: 'r/FlutterDev',
               username: 'u/DEUX BEUH VEURRRR',
@@ -27,6 +28,8 @@ class _LatestScreenState extends State<LatestScreen> {
               upVotes: 100,
               downVotes: 0,
               comments: 10,
+              leftPadding: widget.leftPadding,
+              rightPadding: widget.rightPadding,
             ),
           ],
         );

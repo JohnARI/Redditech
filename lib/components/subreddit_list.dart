@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
-import 'package:redditech/services/api_subreddits.dart';
-import 'package:draw/draw.dart';
 
 class SubredditList extends StatelessWidget {
   const SubredditList(
       {super.key,
       required this.subredditName,
-      required this.community,
       required this.numberOfMembers,
       required this.bottomPadding,
       required this.iconImg});
-  final String subredditName, community, numberOfMembers, iconImg;
+  final String subredditName, numberOfMembers, iconImg;
   final double bottomPadding;
 
   @override
@@ -57,7 +54,7 @@ class SubredditList extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          '$community • $numberOfMembers members',
+          'Community • $numberOfMembers members',
         ),
       ),
     );

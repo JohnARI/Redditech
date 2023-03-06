@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 
 class PopularScreen extends StatefulWidget {
-  const PopularScreen({super.key});
+  const PopularScreen({super.key, required this.leftPadding, required this.rightPadding});
+  final double leftPadding;
+  final double rightPadding;
 
   @override
   State<PopularScreen> createState() => _PopularScreenState();
@@ -16,7 +18,7 @@ class _PopularScreenState extends State<PopularScreen>
       itemCount: 10,
       itemBuilder: (context, index) {
         return Column(
-          children: const [
+          children: [
             PostPreview(
               subreddit: 'r/FlutterDev',
               username: 'u/DEUX BEUH VEURRRR',
@@ -27,6 +29,8 @@ class _PopularScreenState extends State<PopularScreen>
               upVotes: 100,
               downVotes: 0,
               comments: 10,
+              leftPadding: widget.leftPadding,
+              rightPadding: widget.rightPadding,
             ),
           ],
         );

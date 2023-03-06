@@ -20,11 +20,11 @@ class _HeaderTopState extends State<HeaderTop> {
       children: <Widget>[
         Column(
           children: <Widget>[
-            SafeArea(
-              child: Container(
-                height: 100.0,
-                width: MediaQuery.of(context).size.width,
-                color: dark3,
+            Container(
+              height: 120.0,
+              width: MediaQuery.of(context).size.width,
+              color: dark3,
+              child: SafeArea(
                 child: SvgPicture.asset(
                   'assets/images/logos/logo_dark.svg',
                   height: MediaQuery.of(context).size.height,
