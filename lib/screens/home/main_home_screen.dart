@@ -17,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
 
-    return Container(
+    return Material(
+      child: Container(
         decoration: containerBorder,
         child: Column(
           children: [
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ),
           ],
         ),
-      );
+      ),
+    );
   }
 }

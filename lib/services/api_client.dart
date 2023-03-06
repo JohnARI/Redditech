@@ -3,7 +3,6 @@ import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:redditech/screens/main_screen.dart';
-import 'package:redditech/services/api.dart';
 import 'package:redditech/services/api_subreddits.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -37,13 +36,16 @@ class Api {
           url: authUrl.toString(), callbackUrlScheme: "rien");
       String? code = Uri.parse(result).queryParameters['code'];
 
-      await storage.write(key: "token", value: code);
       await reddit?.auth.authorize(code.toString());
 
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const MainScreen()));
+      print("========================================================");
+
+      // print(api.reddit?.auth.credentials.toJson().toString());
+      // print(api.reddit?.user.me());
+      await storage.write(
+          key: "credentials", value: api.reddit!.auth.credentials.toJson());
+
+      print("========================================================");
 
       Navigator.pushReplacement(
           context,
