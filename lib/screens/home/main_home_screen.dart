@@ -17,30 +17,32 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
 
-    return Material(
-      child: Container(
-        decoration: containerBorder,
-        child: Column(
-          children: [
-            MyTabBar(tabController: tabController),
-            Expanded(
-              flex: 3,
-              child: TabBarView(
-                controller: tabController,
-                children: const [
-                  PopularScreen(
-                    leftPadding: 24.0,
-                    rightPadding: 24.0,
-                  ),
-                  LatestScreen(leftPadding: 24.0,
-                    rightPadding: 24.0,),
-                  UpvotesScreen(leftPadding: 24.0,
-                    rightPadding: 24.0,),
-                ],
-              ),
+    return Container(
+      decoration: containerBorder,
+      child: Column(
+        children: [
+          MyTabBar(tabController: tabController),
+          Expanded(
+            flex: 3,
+            child: TabBarView(
+              controller: tabController,
+              children: const [
+                PopularScreen(
+                  leftPadding: 24.0,
+                  rightPadding: 24.0,
+                ),
+                LatestScreen(
+                  leftPadding: 24.0,
+                  rightPadding: 24.0,
+                ),
+                UpvotesScreen(
+                  leftPadding: 24.0,
+                  rightPadding: 24.0,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

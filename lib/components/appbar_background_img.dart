@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
 
 class AppbarBackgroundImg extends StatelessWidget {
-  const AppbarBackgroundImg({super.key, required this.subredditName, required this.backgroundImg});
+  const AppbarBackgroundImg(
+      {super.key, required this.subredditName, required this.backgroundImg});
   final String subredditName, backgroundImg;
 
   @override
@@ -20,6 +21,7 @@ class AppbarBackgroundImg extends StatelessWidget {
                 backgroundImg,
                 fit: BoxFit.cover,
               ),
+              centerTitle: true,
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 32.0),
                 child: Text(
