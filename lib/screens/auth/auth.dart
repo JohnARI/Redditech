@@ -53,12 +53,12 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () async {
-              String? value = await storage.read(key: "token");
+              String? value = await storage.read(key: "credentials");
               print(value);
               debugPrint(
                   '==============================================================');
             },
-            child: const Text('Check Token'),
+            child: const Text('Check Credentials in localstorage'),
           ),
           TextButton(
             style: TextButton.styleFrom(
@@ -71,17 +71,17 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
             },
             child: Text('Check variable isAuth'),
           ),
-          // TextButton(
-          //   style: TextButton.styleFrom(
-          //     foregroundColor: Colors.blue,
-          //   ),
-          //   onPressed: () {
-          //     print(subreddit.getSubredditInfo());
-          //     debugPrint(
-          //         '==============================================================');
-          //   },
-          //   child: Text('test'),
-          // )
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.blue,
+            ),
+            onPressed: () {
+              print(api.reddit!.auth.credentials.toJson());
+              debugPrint(
+                  '==============================================================');
+            },
+            child: Text('Print credentials'),
+          )
         ],
       ),
     );
