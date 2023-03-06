@@ -3,6 +3,7 @@ import 'package:redditech/screens/auth/auth.dart';
 import 'package:redditech/screens/communities/main_community_screen.dart';
 import 'package:redditech/screens/home/main_home_screen.dart';
 import 'package:redditech/screens/search/main_search_screen.dart';
+import 'package:redditech/screens/profile/profile.dart';
 
 // Constants of colors
 const dark0 = Color(0xff15072C);
@@ -40,7 +41,7 @@ final bottomNavbarScreens = [
   const CommunityScreen(),
   const AuthScreen(),
   const SearchScreen(),
-  const HomeScreen(),
+  const Profile()
 ];
 // TODO: Transform this into a map with the title as key and the screen as value
 // Titles displayed in the appbar

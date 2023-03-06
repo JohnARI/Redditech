@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
+import 'package:redditech/services/api_client.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key, required this.settings});
@@ -14,6 +15,18 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   handleChangeField(item) {
     print(item);
+  }
+
+  handleUpdateDisplayName(String displayName) {
+    print(displayName);
+  }
+
+  handleSaveProfile() {
+    setState(() => isEditing = !isEditing);
+
+    if (isEditing) return;
+
+    api.patch('', {});
   }
 
   bool isEditing = false;
@@ -41,7 +54,7 @@ class _SettingsState extends State<Settings> {
               IconButton(
                 icon: Icon(isEditing ? Icons.check : Icons.edit),
                 tooltip: isEditing ? 'Save' : 'Edit',
-                onPressed: () => setState(() => isEditing = !isEditing),
+                onPressed: () => handleSaveProfile,
               ),
             ],
           ),
@@ -54,9 +67,9 @@ class _SettingsState extends State<Settings> {
             children: [
               // ignore: unused_local_variable
               for (var item in widget.settings)
+                // Checkbox(value: false, onChanged: (bool? value) {})
                 if (item['type'] == 'text')
                   TextFormField(
-                    onTap: () => print(item),
                     decoration: InputDecoration(
                       labelText: item['name'],
                     ),

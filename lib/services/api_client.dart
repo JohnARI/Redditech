@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:redditech/screens/main_screen.dart';
 import 'package:redditech/services/api.dart';
+import 'package:http/http.dart' as http;
 import 'package:redditech/services/api_subreddits.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -69,6 +71,29 @@ class Api {
       return isAuth;
     } catch (error) {
       return isAuth;
+    }
+  }
+
+  Future<http.Response> get(String url, Map<String, String> out) async {
+    String? accessToken = await storage.read(key: 'token');
+
+    return http.get(Uri.parse("https://oauth.reddit.com$url"), headers: {
+      "Authorization": "Bearer $accessToken",
+    });
+  }
+
+  Future patch(String url, Map<String, String> out) async {
+    try {
+      String? accessToken = await storage.read(key: 'token');
+
+      return http.patch(Uri.parse("https://oauth.reddit.com$url"),
+          body: jsonEncode(out),
+          headers: {
+            "Authorization": "Bearer ${accessToken}",
+          });
+    } catch (error) {
+      print("ERROR");
+      print(error);
     }
   }
 }
