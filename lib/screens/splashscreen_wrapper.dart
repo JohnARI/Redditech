@@ -45,7 +45,7 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
         future: checkIsAuth(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.data == "") {
-            return const AuthScreen();
+            return const MainScreen();
           } else {
             return const MainScreen();
           }
