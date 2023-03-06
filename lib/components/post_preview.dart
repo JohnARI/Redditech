@@ -14,7 +14,9 @@ class PostPreview extends StatefulWidget {
       required this.timestamp,
       required this.upVotes,
       required this.downVotes,
-      required this.comments});
+      required this.comments,
+      required this.leftPadding,
+      required this.rightPadding});
 
   final String subreddit;
   final String username;
@@ -25,6 +27,8 @@ class PostPreview extends StatefulWidget {
   final int upVotes;
   final int downVotes;
   final int comments;
+  final double leftPadding;
+  final double rightPadding;
 
   @override
   State<PostPreview> createState() => _PostPreviewState();
@@ -57,7 +61,7 @@ class _PostPreviewState extends State<PostPreview> {
         children: <Widget>[
           Padding(
             padding:
-                const EdgeInsets.only(left: 24.0, top: 16.0, right: 24.0),
+                EdgeInsets.only(left: widget.leftPadding, top: 16.0, right: widget.rightPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -112,8 +116,8 @@ class _PostPreviewState extends State<PostPreview> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 24.0, right: 24.0, bottom: 16.0),
+                  padding: EdgeInsets.only(
+                      left: widget.leftPadding, right: widget.rightPadding, bottom: 16.0),
                   child: Text(
                     widget.title,
                     style: const TextStyle(
@@ -125,7 +129,7 @@ class _PostPreviewState extends State<PostPreview> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24),
+            padding: EdgeInsets.only(left: widget.leftPadding, right: widget.rightPadding),
             child: Image.network(widget.image,
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.width,

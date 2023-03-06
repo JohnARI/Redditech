@@ -27,9 +27,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: tabController,
                 children: const [
-                  PopularScreen(),
-                  LatestScreen(),
-                  UpvotesScreen(),
+                  PopularScreen(
+                    leftPadding: 24.0,
+                    rightPadding: 24.0,
+                  ),
+                  LatestScreen(leftPadding: 24.0,
+                    rightPadding: 24.0,),
+                  UpvotesScreen(leftPadding: 24.0,
+                    rightPadding: 24.0,),
                 ],
               ),
             ),

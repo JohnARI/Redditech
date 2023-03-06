@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
+import 'package:redditech/components/appbar_background_img.dart';
+import 'package:redditech/components/overflow_img.dart';
+import 'package:redditech/components/subreddit_description.dart';
+import 'package:redditech/screens/home/latest_screen.dart';
+import 'package:redditech/screens/home/popular_screen.dart';
+import 'package:redditech/screens/home/upvotes_screen.dart';
 
 class CommunityInfoScreen extends StatefulWidget {
   const CommunityInfoScreen(
       {super.key,
       required this.subredditName,
+      required this.subredditDescription,
       required this.numberOfMembers,
+      required this.numberOfOnlineMembers,
       required this.numberOfUpVotes,
       required this.numberOfDownVotes,
       required this.numberOfComments,
       required this.iconImg});
 
-  final String subredditName, iconImg;
+  final String subredditName, iconImg, subredditDescription;
   final int numberOfMembers,
+      numberOfOnlineMembers,
       numberOfUpVotes,
       numberOfDownVotes,
       numberOfComments;
@@ -21,90 +30,120 @@ class CommunityInfoScreen extends StatefulWidget {
   State<CommunityInfoScreen> createState() => _CommunityInfoScreenState();
 }
 
-class _CommunityInfoScreenState extends State<CommunityInfoScreen> {
+class _CommunityInfoScreenState extends State<CommunityInfoScreen>
+    with TickerProviderStateMixin {
+  bool _showMore = false;
+
   @override
   Widget build(BuildContext context) {
+    TabController tabController = TabController(length: 3, vsync: this);
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox(
-            height: 130,
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  expandedHeight: 120,
-                  backgroundColor: Colors.red,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.network(
-                      "https://source.unsplash.com/random",
-                      fit: BoxFit.cover,
-                    ),
-                    centerTitle: true,
-                    title: Text(
-                      "r/${widget.subredditName}"
-                    ),
-                  ),
-                  leading: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          AppbarBackgroundImg(
+              subredditName: widget.subredditName,
+              backgroundImg: "https://source.unsplash.com/random"),
           Padding(
             padding: const EdgeInsets.only(top: 120.0),
             child: Container(
               decoration: containerBorder,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(widget.iconImg),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 71.0, bottom: 16.0),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${widget.numberOfMembers} members",
+                                style: const TextStyle(
+                                  color: medium0,
+                                ),
+                              ),
+                              Text(
+                                "${widget.numberOfOnlineMembers} online",
+                                style: const TextStyle(
+                                  color: medium0,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          TextButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7.0),
+                                  side: const BorderSide(color: medium0),
+                                ),
+                              ),
+                            ),
+                            child: const Text("Join",
+                                style: TextStyle(color: medium0)),
+                          ),
+                        ],
+                      ),
                     ),
-                    title: Text("r/${widget.subredditName}"),
-                    subtitle: const Text("Community"),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text("${widget.numberOfMembers}"),
-                            const Text("Members"),
-                          ],
+                    SubredditDescription(
+                      subredditDescription: widget.subredditDescription,
+                      showMore: _showMore,
+                      showMoreCallback: () {
+                        setState(() {
+                          _showMore = !_showMore;
+                        });
+                      },
+                    ),
+                    TabBar(
+                      controller: tabController,
+                      indicatorColor: medium0,
+                      labelColor: medium0,
+                      unselectedLabelColor: Colors.grey,
+                      tabs: const [
+                        Tab(
+                          text: 'Popular',
                         ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text("${widget.numberOfUpVotes}"),
-                            const Text("Upvotes"),
-                          ],
+                        Tab(
+                          text: 'Latest',
                         ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text("${widget.numberOfDownVotes}"),
-                            const Text("Downvotes"),
-                          ],
+                        Tab(
+                          text: 'Upvotes',
                         ),
+                      ],
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: TabBarView(
+                        controller: tabController,
+                        children: const [
+                          PopularScreen(
+                            leftPadding: 0.0,
+                            rightPadding: 0.0,
+                          ),
+                          LatestScreen(
+                            leftPadding: 0.0,
+                            rightPadding: 0.0,
+                          ),
+                          UpvotesScreen(
+                            leftPadding: 0.0,
+                            rightPadding: 0.0,
+                          ),
+                        ],
                       ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text("${widget.numberOfComments}"),
-                            const Text("Comments"),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          )
+          ),
+          const OverflowImg(
+              backgroundImg: "https://source.unsplash.com/random"),
         ],
       ),
     );
