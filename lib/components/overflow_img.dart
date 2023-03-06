@@ -6,7 +6,7 @@ class OverflowImg extends StatelessWidget {
     required this.backgroundImg,
   });
 
-  final String backgroundImg;
+  final Widget backgroundImg;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,7 @@ class OverflowImg extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
-          child: Image.network(
-            backgroundImg,
-            height: 64.0,
-            width: 64.0,
-            fit: BoxFit.cover,
-          ),
-        ),
+            borderRadius: BorderRadius.circular(10.0), child: backgroundImg),
       ),
     );
   }

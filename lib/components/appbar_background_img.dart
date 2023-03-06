@@ -17,9 +17,17 @@ class AppbarBackgroundImg extends StatelessWidget {
             expandedHeight: 120,
             backgroundColor: medium0,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                backgroundImg,
-                fit: BoxFit.cover,
+              background: ColorFiltered(
+                colorFilter: const ColorFilter.matrix([
+                  0.6, 0, 0, 0, 0, // Red channel
+                  0, 0.6, 0, 0, 0, // Green channel
+                  0, 0, 0.6, 0, 0, // Blue channel
+                  0, 0, 0, 1, 0, // Alpha channel
+                ]),
+                child: Image.network(
+                  backgroundImg,
+                  fit: BoxFit.cover,
+                ),
               ),
               centerTitle: true,
               title: Padding(

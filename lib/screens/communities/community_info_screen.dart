@@ -11,20 +11,13 @@ class CommunityInfoScreen extends StatefulWidget {
   const CommunityInfoScreen(
       {super.key,
       required this.subredditName,
+      required this.subredditTitle,
       required this.subredditDescription,
       required this.numberOfMembers,
-      required this.numberOfOnlineMembers,
-      required this.numberOfUpVotes,
-      required this.numberOfDownVotes,
-      required this.numberOfComments,
       required this.iconImg});
 
-  final String subredditName, iconImg, subredditDescription;
-  final int numberOfMembers,
-      numberOfOnlineMembers,
-      numberOfUpVotes,
-      numberOfDownVotes,
-      numberOfComments;
+  final String subredditName, iconImg, subredditDescription, subredditTitle;
+  final int numberOfMembers;
 
   @override
   State<CommunityInfoScreen> createState() => _CommunityInfoScreenState();
@@ -41,7 +34,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
       body: Stack(
         children: [
           AppbarBackgroundImg(
-              subredditName: widget.subredditName,
+              subredditName: 'r/${widget.subredditName}',
               backgroundImg: "https://source.unsplash.com/random"),
           Padding(
             padding: const EdgeInsets.only(top: 120.0),
@@ -65,10 +58,14 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                                   color: medium0,
                                 ),
                               ),
-                              Text(
-                                "${widget.numberOfOnlineMembers} online",
-                                style: const TextStyle(
-                                  color: medium0,
+                              Container(
+                                constraints: const BoxConstraints(
+                                    minWidth: 100, maxWidth: 210),
+                                child: Text(
+                                  widget.subredditTitle,
+                                  style: const TextStyle(
+                                    color: medium0,
+                                  ),
                                 ),
                               ),
                             ],
@@ -142,8 +139,25 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
               ),
             ),
           ),
-          const OverflowImg(
-              backgroundImg: "https://source.unsplash.com/random"),
+          (() {
+            if (widget.iconImg.isNotEmpty) {
+              return OverflowImg(
+                  backgroundImg: Image.network(
+                widget.iconImg,
+                height: 64.0,
+                width: 64.0,
+                fit: BoxFit.cover,
+              ));
+            }
+            return OverflowImg(
+              backgroundImg: Image.asset(
+                'assets/images/giga_chad.jpg',
+                height: 64.0,
+                width: 64.0,
+                fit: BoxFit.cover,
+              ),
+            );
+          }()),
         ],
       ),
     );

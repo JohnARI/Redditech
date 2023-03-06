@@ -27,7 +27,6 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
           configUri: Uri.parse("draw.ini"),
           redirectUri: Uri.parse("rien://success"));
 
-      print(api.reddit!.user.me());
       bool isAuth = await api.checkIsAuth();
 
       if (isAuth) {
@@ -35,7 +34,6 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
       }
       return "";
     } catch (exception) {
-      print("nope");
       return "";
     }
   }
@@ -48,7 +46,6 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
           if (snapshot.data == "") {
             return const AuthScreen();
           } else {
-            print("I am going to the home screen.");
             return const MainScreen();
           }
         });

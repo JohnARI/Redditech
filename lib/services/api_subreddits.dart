@@ -22,6 +22,10 @@ class ApiSubreddit {
       List<Subreddit> listSubReddits = [];
 
       await for (Subreddit subReddit in subReddits) {
+        print(
+            "=====================================================================================================");
+        print(subReddit);
+        // banner_image
         listSubReddits.add(subReddit);
       }
 

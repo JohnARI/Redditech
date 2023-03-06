@@ -38,14 +38,8 @@ class Api {
 
       await reddit?.auth.authorize(code.toString());
 
-      print("========================================================");
-
-      // print(api.reddit?.auth.credentials.toJson().toString());
-      // print(api.reddit?.user.me());
       await storage.write(
           key: "credentials", value: api.reddit!.auth.credentials.toJson());
-
-      print("========================================================");
 
       Navigator.pushReplacement(
           context,
