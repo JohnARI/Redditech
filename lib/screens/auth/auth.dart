@@ -78,11 +78,11 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () {
-              subreddit.leave("test");
+              api.logout(context);
               debugPrint(
                   '==============================================================');
             },
-            child: Text('test'),
+            child: Text('logout'),
           )
         ],
       ),

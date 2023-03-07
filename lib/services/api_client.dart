@@ -30,6 +30,7 @@ class Api {
     try {
       final result = await FlutterWebAuth.authenticate(
           url: authUrl.toString(), callbackUrlScheme: "rien");
+
       String? code = Uri.parse(result).queryParameters['code'];
 
       String? credentials = await storage.read(key: "credentials");
@@ -72,12 +73,11 @@ class Api {
 
   Future<bool> logout(context) async {
     try {
-      await reddit?.auth.revoke();
+      await storage.write(key: "credentials", value: "");
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => const AuthScreen()));
-
       return true;
     } catch (error) {
       return false;
