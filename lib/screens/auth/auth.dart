@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:redditech/services/api_client.dart';
 import 'dart:async';
 
+import '../../services/api_subreddits.dart';
+
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
@@ -76,11 +78,11 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               foregroundColor: Colors.blue,
             ),
             onPressed: () {
-              print(api.reddit!.auth.credentials.toJson());
+              subreddit.leave("test");
               debugPrint(
                   '==============================================================');
             },
-            child: Text('Print credentials'),
+            child: Text('test'),
           )
         ],
       ),

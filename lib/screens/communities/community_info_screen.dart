@@ -7,6 +7,8 @@ import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
 
+import '../../services/api_subreddits.dart';
+
 class CommunityInfoScreen extends StatefulWidget {
   const CommunityInfoScreen(
       {super.key,
@@ -72,7 +74,9 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                           ),
                           const Spacer(),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              subreddit.join(widget.subredditName);
+                            },
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
