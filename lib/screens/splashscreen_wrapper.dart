@@ -1,5 +1,6 @@
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
+import 'package:redditech/screens/auth/auth.dart';
 import 'dart:async';
 import 'package:redditech/screens/main_screen.dart';
 import 'package:redditech/services/api_client.dart';
@@ -44,7 +45,7 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
         future: checkIsAuth(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.data == "") {
-            return const MainScreen();
+            return const AuthScreen();
           } else {
             return const MainScreen();
           }
