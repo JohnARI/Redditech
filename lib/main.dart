@@ -13,12 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Redditech',
-      home: const SpashScreenWrapper(),
+      home: const SplashScreenWrapper(),
       theme: ThemeData(
-        fontFamily: 'IBM Plex Sans',
-
+        fontFamily: 'IBM Plex Sans Regular',
       ),
     );
   }
 }
-
