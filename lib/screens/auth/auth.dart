@@ -30,6 +30,20 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
                   physics: const NeverScrollableScrollPhysics(),
                   slivers: [
                     SliverAppBar(
+                      bottom: PreferredSize(
+                        preferredSize: const Size.fromHeight(0.0),
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 30.0),
+                          child: const Text(
+                            "Reddit client for Giga Chads",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 11.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ),
                       centerTitle: true,
                       expandedHeight: 182,
                       backgroundColor: dark3,
@@ -39,17 +53,6 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
                             duration: const Duration(milliseconds: 0),
                             child: Image.asset('assets/images/giga_chad.jpg',
                                 fit: BoxFit.cover)),
-                        title: const Padding(
-                          padding: EdgeInsets.only(bottom: 18.0, left: 6.0),
-                          child: Text(
-                            "Reddit client for Giga Chads",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 11.0,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ],
