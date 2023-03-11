@@ -30,35 +30,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
       padding: const EdgeInsets.only(
           top: 20, bottom: 0), // 59 if search bar is present, 0 if not
       decoration: containerBorder,
-      // child: ListView.builder(
-      //   itemCount: subredditsModel.length,
-      //   itemBuilder: (context, index) {
-      //     return GestureDetector(
-      //       onTap: () {
-      //         Navigator.push(
-      //           context,
-      //           MaterialPageRoute(
-      //             builder: (context) => CommunityInfoScreen(
-      //               subredditName: subredditsModel[index].subredditName,
-      //               subredditDescription: subredditsModel[index].subredditDescription,
-      //               numberOfMembers: subredditsModel[index].numberOfMembers,
-      //               numberOfOnlineMembers: 1000,
-      //               numberOfUpVotes: 1000,
-      //               numberOfDownVotes: 1000,
-      //               numberOfComments: 1000,
-      //               iconImg: '',
-      //             ),
-      //           ),
-      //         );
-      //       },
-      //       child: SubredditList(
-      //           subredditName: subredditsModel[index].subredditName,
-      //           numberOfMembers: subredditsModel[index].numberOfMembers.toString(),
-      //           bottomPadding: 0,
-      //           iconImg: ''),
-      //     );
-      //   },
-      // ),
       child: FutureBuilder<List<Subreddit>>(
         future: mySubreddits,
         builder: (context, snapshot) {
@@ -80,6 +51,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => CommunityInfoScreen(
+                          mySubreddits: snapshot.data,
                           subredditTitle: item.title,
                           subredditName: item.displayName,
                           numberOfMembers: subscribers,
@@ -88,19 +60,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         ),
                       ),
                     );
-
-                    //             final int subscribers = data['subscribers'];
-                    // final String iconImg = data['icon_img'];
-
-                    // return GestureDetector(
-                    //   onTap: () {
-                    //     print(item.displayName);
-                    //   },
-                    //   child: SubredditList(
-                    //       subredditName: item.displayName,
-                    //       numberOfMembers: subscribers.toString(),
-                    //       bottomPadding: 0,
-                    //       iconImg: iconImg),
                   },
                   child: SubredditList(
                       subredditName: item.displayName,

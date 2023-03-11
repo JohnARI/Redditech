@@ -1,3 +1,4 @@
+import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
 import 'package:redditech/components/appbar_background_img.dart';
@@ -16,10 +17,12 @@ class CommunityInfoScreen extends StatefulWidget {
       required this.subredditTitle,
       required this.subredditDescription,
       required this.numberOfMembers,
-      required this.iconImg});
+      required this.iconImg,
+      required this.mySubreddits});
 
   final String subredditName, iconImg, subredditDescription, subredditTitle;
   final int numberOfMembers;
+  final List<Subreddit>? mySubreddits;
 
   @override
   State<CommunityInfoScreen> createState() => _CommunityInfoScreenState();
@@ -28,6 +31,23 @@ class CommunityInfoScreen extends StatefulWidget {
 class _CommunityInfoScreenState extends State<CommunityInfoScreen>
     with TickerProviderStateMixin {
   bool _showMore = false;
+  bool _isJoined = false;
+  late List<Subreddit>? _inMySubreddit;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    final data =
+        await subreddit.searchByNameInMySubreddit(widget.subredditName);
+    setState(() => _inMySubreddit = data);
+    if (_inMySubreddit!.isNotEmpty) {
+      setState(() => _isJoined = true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,21 +94,36 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                           ),
                           const Spacer(),
                           TextButton(
-                            onPressed: () {
-                              subreddit.join(widget.subredditName);
-                            },
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(7.0),
-                                  side: const BorderSide(color: medium0),
+                              onPressed: () {
+                                if (_isJoined) {
+                                  subreddit.leave(widget.subredditName);
+                                  setState(() => _isJoined = false);
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text('Left subreddit!'),
+                                    duration: Duration(seconds: 2),
+                                  ));
+                                } else {
+                                  subreddit.join(widget.subredditName);
+                                  setState(() => _isJoined = true);
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text('Joined subreddit!'),
+                                    duration: Duration(seconds: 2),
+                                  ));
+                                }
+                              },
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7.0),
+                                    side: const BorderSide(color: medium0),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: const Text("Join",
-                                style: TextStyle(color: medium0)),
-                          ),
+                              child: Text(_isJoined ? "Leave" : "Join",
+                                  style: const TextStyle(color: medium0))),
                         ],
                       ),
                     ),

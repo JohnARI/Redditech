@@ -34,14 +34,14 @@ class ApiSubreddit {
     }
   }
 
-  Future<List<SubredditRef>> searchSubreddit(String query) async {
+  Future<List<Subreddit>> searchSubreddit(String query) async {
     try {
       Stream<SubredditRef>? mySearch =
           api.reddit!.subreddits.search(query, limit: 25);
-      List<SubredditRef> listSubReddits = [];
+      List<Subreddit> listSubReddits = [];
 
       await for (SubredditRef subreddit in mySearch) {
-        listSubReddits.add(subreddit);
+        listSubReddits.add(await subreddit.populate());
       }
       return listSubReddits;
     } catch (exception) {
@@ -67,7 +67,7 @@ class ApiSubreddit {
     }
   }
 
-  Future<bool> join(String subredditName) async {
+  Future<bool> leave(String subredditName) async {
     try {
       List<Subreddit> inMySubreddit =
           await searchByNameInMySubreddit(subredditName);
@@ -85,19 +85,15 @@ class ApiSubreddit {
     }
   }
 
-  Future<bool> leave(String subredditName) async {
+  Future<bool> join(String subredditName) async {
     try {
-      // http.Response test = await api.reddit?.get('/api/v1/me/prefs');
-      // dynamic test = await api.reddit
-      //     ?.post('/api/subscribe', {"action:": "sub", "sr_name": "paris"});
-      // print(test.body);
-
-      dynamic test = await api.reddit?.get("/api/v1/me/prefs");
-
-      // http.Response test = await api.reddit?.get('/api/v1/me/prefs');
-      // api.reddit?.put('/api/v1/me/prefs', body: {"threaded_messages": "true"});
-      print(test);
-      return true;
+      List<SubredditRef>? target =
+          await api.reddit?.subreddits.searchByName(subredditName);
+      if (target!.isNotEmpty) {
+        target[0].subscribe();
+        return true;
+      }
+      return false;
     } catch (exception) {
       print(exception);
       return false;

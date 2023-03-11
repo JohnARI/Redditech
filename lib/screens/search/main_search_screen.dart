@@ -5,6 +5,7 @@ import 'package:redditech/components/subreddit_list.dart';
 import 'package:draw/draw.dart';
 import 'package:redditech/services/api_subreddits.dart';
 import '../../common/const.dart';
+import '../communities/community_info_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -14,7 +15,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  late Future<List<SubredditRef>> searchSubreddit;
+  late Future<List<Subreddit>> searchSubreddit;
   late TextEditingController textEditingController = TextEditingController();
   late String inputQuery = "";
 
@@ -31,7 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
         padding: const EdgeInsets.only(
             top: 20, bottom: 59), // 59 if search bar is present, 0 if not
         decoration: containerBorder,
-        child: FutureBuilder<List<SubredditRef>>(
+        child: FutureBuilder<List<Subreddit>>(
           future: searchSubreddit,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -44,10 +45,24 @@ class _SearchScreenState extends State<SearchScreen> {
                   final Map<String, dynamic> data = jsonDecode(item.toString());
                   final int subscribers = data['subscribers'];
                   final String iconImg = data['icon_img'];
+                  final String title = data['title'];
+                  final String description = data['public_description'];
 
                   return GestureDetector(
                     onTap: () {
-                      print(item.displayName);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CommunityInfoScreen(
+                            mySubreddits: [item],
+                            subredditTitle: title,
+                            subredditName: item.displayName,
+                            numberOfMembers: subscribers,
+                            iconImg: iconImg,
+                            subredditDescription: description,
+                          ),
+                        ),
+                      );
                     },
                     child: SubredditList(
                         subredditName: item.displayName,

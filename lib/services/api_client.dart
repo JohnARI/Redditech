@@ -23,7 +23,7 @@ class Api {
       redirectUri: Uri.parse("rien://success"),
     );
 
-    authUrl = reddit?.auth.url(['*'], 'rien', compactLogin: true);
+    authUrl = reddit?.auth.url(['*'], 'rien', compactLogin: false);
   }
 
   Future<bool> authenticate(context) async {
@@ -35,6 +35,7 @@ class Api {
 
       String? credentials = await storage.read(key: "credentials");
       if (credentials!.isNotEmpty) {
+        print("au revoir");
         await reddit?.auth.refresh();
       } else {
         await reddit?.auth.authorize(code.toString());
@@ -74,6 +75,8 @@ class Api {
   Future<bool> logout(context) async {
     try {
       await storage.write(key: "credentials", value: "");
+      await storage.write(key: "token", value: "");
+      api = Api();
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
