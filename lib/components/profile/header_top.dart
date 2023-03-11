@@ -81,6 +81,7 @@ class _HeaderTopState extends State<HeaderTop> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.network(
+                  fit: BoxFit.cover,
                   widget.profileSrc,
                   height: 90.0,
                   width: 90.0,

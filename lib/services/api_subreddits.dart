@@ -6,10 +6,8 @@ class ApiSubreddit {
   Future<bool> test() async {
     try {
       Redditor? me = await api.reddit?.user.me();
-      print(me);
       return true;
     } catch (exception) {
-      print("bonjour");
       print(exception);
       return false;
     }

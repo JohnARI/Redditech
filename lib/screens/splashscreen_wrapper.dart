@@ -26,15 +26,15 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
           configUri: Uri.parse("draw.ini"),
           redirectUri: Uri.parse("rien://success"));
 
-      print(api.reddit!.user.me());
       bool isAuth = await api.checkIsAuth();
 
       if (isAuth) {
         return "homeScreen";
       }
+
       return "";
     } catch (exception) {
-      print("nope");
+      // print("nope");
       return "";
     }
   }
