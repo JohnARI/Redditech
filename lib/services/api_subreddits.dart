@@ -1,18 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:draw/draw.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:redditech/services/api_client.dart';
 
 class ApiSubreddit {
   Future<bool> test() async {
     try {
       Redditor? me = await api.reddit?.user.me();
-      print(me);
       return true;
     } catch (exception) {
-      print("bonjour");
       print(exception);
       return false;
     }

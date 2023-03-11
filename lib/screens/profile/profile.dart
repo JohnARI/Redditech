@@ -1,38 +1,29 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
 import 'package:redditech/components/profile/header.dart';
+import 'package:draw/draw.dart';
+import 'package:redditech/services/api_profile.dart';
 import 'package:redditech/components/profile/settings.dart';
 
 class Profile extends StatefulWidget {
-  const Profile(
-      {super.key,
-      required this.bannerSrc,
-      required this.profileSrc,
-      required this.username,
-      required this.bio,
-      required this.email,
-      required this.gender,
-      required this.followersCount,
-      required this.karmaCount});
-
-  final String bannerSrc;
-  final String profileSrc;
-  final String username;
-  final String bio;
-  final String email;
-  final String gender;
-  final int followersCount;
-  final int karmaCount;
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
-  get username => widget.username;
-  get bio => widget.bio;
-  get email => widget.email;
-  get gender => widget.gender;
+  late Future<Redditor?> userProfile;
+  late Future<dynamic> userPrefs;
+
+  @override
+  void initState() {
+    super.initState();
+    userProfile = profile.getProfile();
+    userPrefs = profile.getPrefs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +33,57 @@ class _ProfileState extends State<Profile> {
         color: Colors.white,
         child: Column(
           children: [
-            Header(
-                bannerSrc: widget.bannerSrc,
-                profileSrc: widget.profileSrc,
-                username: widget.username,
-                bio: widget.bio,
-                followersCount: widget.followersCount,
-                karmaCount: widget.karmaCount),
-            const Divider(color: neutralMedium3, thickness: 2.0),
-            Settings(settings: [
-              {'value': username, 'name': 'Username', 'type': 'text'},
-              {'value': bio, 'name': 'Bio', 'type': 'text'},
-              {'value': email, 'name': 'Email', 'type': 'text'},
-              {
-                'value': gender,
-                'name': 'Gender',
-                'type': 'select',
-                'options': const ['Male', 'Female', 'Other']
+            FutureBuilder<Redditor?>(
+              future: userProfile,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    !snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (snapshot.hasError) {
+                  return const Center(child: Text('Error'));
+                }
+
+                final items = snapshot.data!;
+                final Map<String, dynamic> data = jsonDecode(items.toString());
+
+                final String name = data['name'];
+                final String profileSrc = data['icon_img'];
+                final String bannerSrc = data['subreddit']['banner_img'];
+                final String bio = data['subreddit']['public_description'];
+                final int followersCount = data['subreddit']['subscribers'];
+                final int karmaCount = data['total_karma'];
+
+                String profileSrcFixed = profileSrc.replaceAll("&amp;", "&");
+                String bannerSrcFixed = bannerSrc.replaceAll("&amp;", "&");
+
+                return Header(
+                    bannerSrc: bannerSrcFixed,
+                    profileSrc: profileSrcFixed,
+                    username: name,
+                    bio: bio,
+                    followersCount: followersCount,
+                    karmaCount: karmaCount);
               },
-            ]),
+            ),
+            const Divider(color: neutralMedium3, thickness: 2.0),
+            FutureBuilder<dynamic>(
+                future: userPrefs,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting ||
+                      !snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Error'));
+                  }
+
+                  final items = snapshot.data!;
+
+                  return Settings(settings: items);
+                })
           ],
         ),
       ),

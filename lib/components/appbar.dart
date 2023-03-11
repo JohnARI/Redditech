@@ -30,13 +30,13 @@ class MyAppbar extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 24.0, bottom: 18.0),
                     child: Text(title,
                         style: const TextStyle(
-                          shadows: [
-                            Shadow(
-                              color: neutralDark0,
-                              offset: Offset(0, 0),
-                              blurRadius: 5,
-                            ),
-                          ],
+                            shadows: [
+                              Shadow(
+                                color: neutralDark0,
+                                offset: Offset(0, 0),
+                                blurRadius: 5,
+                              ),
+                            ],
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w600)),

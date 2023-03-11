@@ -23,7 +23,7 @@ class Api {
       redirectUri: Uri.parse("rien://success"),
     );
 
-    authUrl = reddit?.auth.url(['*'], 'rien', compactLogin: false);
+    authUrl = reddit?.auth.url(['*'], 'rien', compactLogin: true);
   }
 
   Future<bool> authenticate(context) async {
@@ -35,7 +35,6 @@ class Api {
 
       String? credentials = await storage.read(key: "credentials");
       if (credentials!.isNotEmpty) {
-        print("au revoir");
         await reddit?.auth.refresh();
       } else {
         await reddit?.auth.authorize(code.toString());
@@ -95,36 +94,17 @@ class Api {
     });
   }
 
-  Future<dynamic> patch(String url, Map<String, String> out) async {
-    try {
-      String? accessToken = await storage.read(key: 'token');
+  Future patch(String api, Map<String, String> out) async {
+    String? credentials = await storage.read(key: 'credentials');
 
-      return http.patch(Uri.parse("https://oauth.reddit.com$url"),
-          body: jsonEncode(out),
-          headers: {
-            "Authorization": "Bearer ${accessToken}",
-          });
-    } catch (error) {
-      print("ERROR");
-      print(error);
-    }
+    Map<String, dynamic>? credentialsJson = jsonDecode(credentials!);
+
+    return http.patch(Uri.parse("https://oauth.reddit.com$api"),
+        body: json.encode(out),
+        headers: {
+          "Authorization": "Bearer ${credentialsJson!['accessToken']}",
+        });
   }
-
-  // Future<dynamic> post(String url, Map<String, String> out) async {
-  //   try {
-  //     String? accessToken = await storage.read(key: 'token');
-
-  //     return http.post(Uri.parse("https://oauth.reddit.com$url"),
-  //         body: jsonEncode(out),
-  //         headers: {
-  //           "Authorization": "Bearer ${accessToken}",
-  //           'Content-type': 'application/json; charset=UTF-8'
-  //         });
-  //   } catch (error) {
-  //     print("ERROR");
-  //     print(error);
-  //   }
-  // }
 }
 
 const storage = FlutterSecureStorage();

@@ -53,11 +53,13 @@ class _PostPageState extends State<PostPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 24, right: 24),
+                              padding:
+                                  const EdgeInsets.only(left: 24, right: 24),
                               child: Image.network(widget.image,
                                   fit: BoxFit.cover,
                                   width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height * 0.3),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.3),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
