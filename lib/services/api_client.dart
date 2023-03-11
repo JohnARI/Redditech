@@ -45,8 +45,6 @@ class Api {
           key: "credentials", value: api.reddit!.auth.credentials.toJson());
       await storage.write(key: "token", value: code);
 
-      api = Api();
-
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -79,6 +77,7 @@ class Api {
       // await reddit?.auth.revoke();
       await storage.write(key: "credentials", value: "");
       await storage.write(key: "token", value: "");
+      api = Api();
 
       Navigator.pushReplacement(
           context,

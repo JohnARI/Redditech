@@ -55,10 +55,8 @@ class _ProfileState extends State<Profile> {
                 final int followersCount = data['subreddit']['subscribers'];
                 final int karmaCount = data['total_karma'];
 
-                String profileSrcFixed =
-                    profileSrc.substring(0, profileSrc.indexOf('?'));
-                String bannerSrcFixed =
-                    bannerSrc.substring(0, bannerSrc.indexOf('?'));
+                String profileSrcFixed = profileSrc.replaceAll("&amp;", "&");
+                String bannerSrcFixed = bannerSrc.replaceAll("&amp;", "&");
 
                 return Header(
                     bannerSrc: bannerSrcFixed,

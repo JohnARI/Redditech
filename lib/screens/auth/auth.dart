@@ -60,6 +60,11 @@ class _AuthScreen extends State<AuthScreen> with TickerProviderStateMixin {
               ),
               Column(
                 children: [
+                  TextButton(
+                      onPressed: () {
+                        api.logout(context);
+                      },
+                      child: const Text("Logout")),
                   const Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 24.0, vertical: 29.0),

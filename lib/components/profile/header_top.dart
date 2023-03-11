@@ -30,7 +30,10 @@ class _HeaderTopState extends State<HeaderTop> {
             Container(
               height: 150.0,
               color: medium0,
-              child: Image.network(widget.bannerSrc,
+              child: Image.network(
+                  widget.bannerSrc.isNotEmpty
+                      ? widget.bannerSrc
+                      : "https://source.unsplash.com/random",
                   fit: BoxFit.cover,
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.3),

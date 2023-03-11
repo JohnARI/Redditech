@@ -7,7 +7,6 @@ import 'package:redditech/services/api_client.dart';
 class Settings extends StatefulWidget {
   const Settings({super.key, required this.settings});
 
-  // ignore: prefer_typing_uninitialized_variables
   final Map<String, dynamic> settings;
 
   @override
