@@ -30,7 +30,7 @@ class _SettingsState extends State<Settings> {
           widget.settings['activity_relevant_ads'].toString(),
     };
 
-    dynamic response = await api.patch('/api/v1/me/prefs', prefrences);
+    await api.patch('/api/v1/me/prefs', prefrences);
   }
 
   bool isEditing = false;
@@ -69,7 +69,7 @@ class _SettingsState extends State<Settings> {
               child: Column(
             children: [
               CheckboxListTile(
-                  title: Text("Nightmode"),
+                  title: const Text("Nightmode"),
                   value: widget.settings['nightmode'],
                   onChanged: isEditing
                       ? (value) =>
@@ -83,7 +83,7 @@ class _SettingsState extends State<Settings> {
                           setState(() => widget.settings['label_nsfw'] = value!)
                       : null),
               CheckboxListTile(
-                  title: Text("Enable relevant ads"),
+                  title: const Text("Enable relevant ads"),
                   value: widget.settings['activity_relevant_ads'],
                   onChanged: isEditing
                       ? (value) => setState(() =>
@@ -98,7 +98,7 @@ class _SettingsState extends State<Settings> {
                 value: widget.settings['lang'],
                 icon: const Icon(Icons.keyboard_arrow_down),
                 elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
+                style: const TextStyle(color: neutralDark0),
                 onChanged: isEditing
                     ? (String? value) {
                         // This is called when the user selects an item.
@@ -124,7 +124,7 @@ class _SettingsState extends State<Settings> {
                 value: widget.settings['country_code'],
                 icon: const Icon(Icons.keyboard_arrow_down),
                 elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
+                style: const TextStyle(color: neutralDark0),
                 onChanged: isEditing
                     ? (String? value) {
                         // This is called when the user selects an item.
@@ -147,10 +147,10 @@ class _SettingsState extends State<Settings> {
                   fillColor: neutralLight0,
                   labelText: 'Accept PMs',
                 ),
+                style: const TextStyle(color: neutralDark0),
                 value: widget.settings['accept_pms'],
                 icon: const Icon(Icons.keyboard_arrow_down),
                 elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
                 onChanged: isEditing
                     ? (String? value) {
                         setState(() {
