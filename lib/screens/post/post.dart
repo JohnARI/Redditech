@@ -59,7 +59,9 @@ class _PostPageState extends State<PostPage> {
                             color: medium0,
                           ))),
                   Padding(
-                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02, bottom: MediaQuery.of(context).size.height * 0.01),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.02,
+                        bottom: MediaQuery.of(context).size.height * 0.01),
                     child: Text(widget.title,
                         style: const TextStyle(
                             fontSize: 16.0, fontWeight: FontWeight.w600)),

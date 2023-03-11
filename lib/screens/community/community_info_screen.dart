@@ -4,7 +4,7 @@ import 'package:redditech/components/appbar_background_img.dart';
 import 'package:redditech/components/subreddit_description.dart';
 import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
-import 'package:redditech/screens/home/upvotes_screen.dart';
+import 'package:redditech/screens/home/top_screen.dart';
 
 class CommunityInfoScreen extends StatefulWidget {
   const CommunityInfoScreen(
@@ -121,7 +121,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                   leftPadding: 0.0,
                   rightPadding: 0.0,
                 ),
-                UpvotesScreen(
+                TopScreen(
                   leftPadding: 0.0,
                   rightPadding: 0.0,
                 ),

@@ -1,28 +1,28 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:draw/draw.dart';
 import 'package:redditech/components/post_preview.dart';
 import "package:redditech/services/api_home.dart";
+import 'package:draw/draw.dart';
 
-class LatestScreen extends StatefulWidget {
-  const LatestScreen(
+class TopScreen extends StatefulWidget {
+  const TopScreen(
       {super.key, required this.leftPadding, required this.rightPadding});
   final double leftPadding;
   final double rightPadding;
 
   @override
-  State<LatestScreen> createState() => _LatestScreenState();
+  State<TopScreen> createState() => _TopScreenState();
 }
 
-class _LatestScreenState extends State<LatestScreen> {
+class _TopScreenState extends State<TopScreen> {
   late Future<Stream<UserContent>?> popular;
   late Future<List<UserContent>> popularPosts;
 
   @override
   void initState() {
     super.initState();
-    popular = home.getLatest();
+    popular = home.getTop();
   }
 
   @override
@@ -99,8 +99,11 @@ class _LatestScreenState extends State<LatestScreen> {
                             final Map<String, dynamic> author =
                                 jsonDecode(items.toString());
 
-                            final String profileSrcFixed =
-                                author['icon_img'].replaceAll('&amp;', '&');
+                            String profileSrc = author['icon_img'] ?? '';
+
+                            String profileSrcFixed =
+                                profileSrc.replaceAll('&amp;', '&');
+
                             String preview = data[i]['preview']?['images'][0]
                                     ['source']['url'] ??
                                 '';

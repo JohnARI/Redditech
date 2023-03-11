@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:redditech/screens/post/post.dart';
 
 class PostPreview extends StatefulWidget {
@@ -15,6 +17,7 @@ class PostPreview extends StatefulWidget {
       required this.upVotes,
       required this.downVotes,
       required this.comments,
+      required this.url,
       required this.leftPadding,
       required this.rightPadding});
 
@@ -23,6 +26,7 @@ class PostPreview extends StatefulWidget {
   final String title;
   final String profilePicture;
   final String image;
+  final String url;
   final int timestamp;
   final int upVotes;
   final int downVotes;
@@ -60,15 +64,16 @@ class _PostPreviewState extends State<PostPreview> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
-            padding:
-                EdgeInsets.only(left: widget.leftPadding, top: 16.0, right: widget.rightPadding),
+            padding: EdgeInsets.only(
+                left: widget.leftPadding,
+                top: 16.0,
+                right: widget.rightPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                const CircleAvatar(
+                CircleAvatar(
                     radius: 32,
-                    backgroundImage: NetworkImage(
-                        'https://googleflutter.com/sample_image.jpg')),
+                    backgroundImage: NetworkImage(widget.profilePicture)),
                 const SizedBox(width: 16),
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -115,29 +120,50 @@ class _PostPreviewState extends State<PostPreview> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: widget.leftPadding, right: widget.rightPadding, bottom: 16.0),
-                  child: Text(
-                    widget.title,
-                    style: const TextStyle(
-                        fontSize: 19.2,
-                        fontWeight: FontWeight.w600),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: widget.leftPadding,
+                        right: widget.rightPadding,
+                        bottom: 16.0),
+                    child: Text(
+                      widget.title,
+                      style: const TextStyle(
+                          fontSize: 19.2, fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
+          widget.image != 'default' &&
+                  widget.image != '' &&
+                  widget.image != 'msfw'
+              ? Padding(
+                  padding: EdgeInsets.only(
+                      left: widget.leftPadding, right: widget.rightPadding),
+                  child: Image.network(widget.image,
+                      // fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.3),
+                )
+              : RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: widget.url,
+                        style: const TextStyle(color: medium0),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            // launch(widget.url);
+                          },
+                      ),
+                    ],
+                  ),
+                ),
           Padding(
-            padding: EdgeInsets.only(left: widget.leftPadding, right: widget.rightPadding),
-            child: Image.network(widget.image,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.3),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 24, right: 24, bottom: 16, top: 16),
+            padding:
+                const EdgeInsets.only(left: 24, right: 24, bottom: 16, top: 16),
             child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
               Row(
                 children: [
@@ -159,8 +185,7 @@ class _PostPreviewState extends State<PostPreview> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Icon(Icons.chat_bubble_outline,
-                        color: neutralDark2),
+                    const Icon(Icons.chat_bubble_outline, color: neutralDark2),
                     const SizedBox(width: 4),
                     Text(widget.comments.toString()),
                   ],
