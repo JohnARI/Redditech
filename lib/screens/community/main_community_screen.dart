@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:redditech/components/subreddit_list.dart';
-import 'package:redditech/models/subreddit.dart';
 import 'package:redditech/screens/communities/community_info_screen.dart';
 import 'package:redditech/services/api_subreddits.dart';
 import 'package:draw/draw.dart';
@@ -57,6 +56,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           numberOfMembers: subscribers,
                           iconImg: iconImg,
                           subredditDescription: description,
+                          subreddit: item,
                         ),
                       ),
                     );

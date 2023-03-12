@@ -1,19 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:draw/draw.dart';
 import 'package:redditech/services/api_client.dart';
 
 class ApiSubreddit {
-  Future<bool> test() async {
-    try {
-      Redditor? me = await api.reddit?.user.me();
-      return true;
-    } catch (exception) {
-      print(exception);
-      return false;
-    }
-  }
-
   Future<List<Subreddit>> getMySubreddits() async {
     try {
       Stream<Subreddit> subReddits = api.reddit!.user.subreddits();
@@ -63,48 +52,46 @@ class ApiSubreddit {
     }
   }
 
-  Future<bool> leave(String subredditName) async {
-    try {
-      List<Subreddit> inMySubreddit =
-          await searchByNameInMySubreddit(subredditName);
-
-      if (inMySubreddit.isNotEmpty) {
-        await inMySubreddit[0].unsubscribe();
-
-        return true;
-      }
-
-      return false;
-    } catch (exception) {
-      print(exception);
-      return false;
-    }
-  }
-
-  Future<bool> join(String subredditName) async {
-    try {
-      List<SubredditRef>? target =
-          await api.reddit?.subreddits.searchByName(subredditName);
-      if (target!.isNotEmpty) {
-        target[0].subscribe();
-        return true;
-      }
-      return false;
-    } catch (exception) {
-      print(exception);
-      return false;
-    }
-  }
-
   Future<bool> getPostsFromSubreddit(String subredditName) async {
     try {
       List<SubredditRef> subreddits =
           await api.reddit!.subreddits.searchByName(subredditName);
+
       return true;
     } catch (exception) {
       print(exception);
       return false;
     }
+  }
+
+  /// subreddit - From which subreddit you want to get your posts.
+  ///
+  /// filter - What kind of filter you want to apply. 3 availaible filters:
+  /// - top
+  /// - latest
+  /// - popular
+  Future<List<UserContent>> getSubredditPostsFiltered(
+      Subreddit subreddit, String filter) async {
+    switch (filter) {
+      case "top":
+        return await convertStreamToList(subreddit.top(limit: 10));
+      case "latest":
+        return await convertStreamToList(subreddit.newest(limit: 10));
+      case "popular":
+        return await convertStreamToList(subreddit.hot(limit: 10));
+      default:
+        return List<UserContent>.empty();
+    }
+  }
+
+  Future<List<UserContent>> convertStreamToList(
+      Stream<UserContent> stream) async {
+    List<UserContent> listUserContent = [];
+    await for (UserContent userContent in stream) {
+      listUserContent.add(userContent);
+    }
+
+    return listUserContent;
   }
 }
 

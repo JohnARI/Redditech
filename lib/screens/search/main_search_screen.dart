@@ -60,6 +60,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             numberOfMembers: subscribers,
                             iconImg: iconImg,
                             subredditDescription: description,
+                            subreddit: item,
                           ),
                         ),
                       );

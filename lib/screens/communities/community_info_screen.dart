@@ -4,10 +4,11 @@ import 'package:redditech/common/const.dart';
 import 'package:redditech/components/appbar_background_img.dart';
 import 'package:redditech/components/overflow_img.dart';
 import 'package:redditech/components/subreddit_description.dart';
-import 'package:redditech/screens/home/latest_screen.dart';
+
 import 'package:redditech/screens/home/popular_screen.dart';
 import 'package:redditech/screens/home/upvotes_screen.dart';
 
+import '../../components/subreddit_posts/latest_screen.dart';
 import '../../services/api_subreddits.dart';
 
 class CommunityInfoScreen extends StatefulWidget {
@@ -18,11 +19,13 @@ class CommunityInfoScreen extends StatefulWidget {
       required this.subredditDescription,
       required this.numberOfMembers,
       required this.iconImg,
-      required this.mySubreddits});
+      required this.mySubreddits,
+      required this.subreddit});
 
   final String subredditName, iconImg, subredditDescription, subredditTitle;
   final int numberOfMembers;
   final List<Subreddit>? mySubreddits;
+  final Subreddit? subreddit;
 
   @override
   State<CommunityInfoScreen> createState() => _CommunityInfoScreenState();
@@ -96,7 +99,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                           TextButton(
                               onPressed: () {
                                 if (_isJoined) {
-                                  subreddit.leave(widget.subredditName);
+                                  widget.subreddit!.unsubscribe();
                                   setState(() => _isJoined = false);
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
@@ -104,7 +107,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                                     duration: Duration(seconds: 2),
                                   ));
                                 } else {
-                                  subreddit.join(widget.subredditName);
+                                  widget.subreddit!.subscribe();
                                   setState(() => _isJoined = true);
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
@@ -157,7 +160,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                       flex: 3,
                       child: TabBarView(
                         controller: tabController,
-                        children: const [
+                        children: [
                           PopularScreen(
                             leftPadding: 0.0,
                             rightPadding: 0.0,
@@ -165,6 +168,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                           LatestScreen(
                             leftPadding: 0.0,
                             rightPadding: 0.0,
+                            subreddit: widget.subreddit!,
                           ),
                           UpvotesScreen(
                             leftPadding: 0.0,
