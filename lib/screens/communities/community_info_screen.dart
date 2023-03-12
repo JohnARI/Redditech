@@ -6,8 +6,7 @@ import 'package:redditech/components/overflow_img.dart';
 import 'package:redditech/components/subreddit_description.dart';
 
 import 'package:redditech/screens/home/popular_screen.dart';
-import 'package:redditech/screens/home/upvotes_screen.dart';
-
+import 'package:redditech/screens/home/top_screen.dart';
 import '../../components/subreddit_posts/latest_screen.dart';
 import '../../services/api_subreddits.dart';
 
@@ -60,7 +59,14 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
         children: [
           AppbarBackgroundImg(
               subredditName: 'r/${widget.subredditName}',
-              backgroundImg: "https://source.unsplash.com/random"),
+              backgroundImg: SafeArea(
+                  child: Image.network("https://source.unsplash.com/random")),
+              overflowImg: Image.network(
+                "https://source.unsplash.com/random",
+                height: 64.0,
+                width: 64.0,
+                fit: BoxFit.cover,
+              )),
           Padding(
             padding: const EdgeInsets.only(top: 120.0),
             child: Container(
@@ -170,7 +176,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                             rightPadding: 0.0,
                             subreddit: widget.subreddit!,
                           ),
-                          UpvotesScreen(
+                          TopScreen(
                             leftPadding: 0.0,
                             rightPadding: 0.0,
                           ),

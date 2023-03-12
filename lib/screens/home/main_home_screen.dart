@@ -3,7 +3,7 @@ import 'package:redditech/common/const.dart';
 import 'package:redditech/components/tabbar.dart';
 import 'package:redditech/screens/home/latest_screen.dart';
 import 'package:redditech/screens/home/popular_screen.dart';
-import 'package:redditech/screens/home/upvotes_screen.dart';
+import 'package:redditech/screens/home/top_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   leftPadding: 24.0,
                   rightPadding: 24.0,
                 ),
-                UpvotesScreen(
+                TopScreen(
                   leftPadding: 24.0,
                   rightPadding: 24.0,
                 ),

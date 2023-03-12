@@ -1,33 +1,69 @@
+import 'dart:convert';
+
+import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 
+import '../../services/api_subreddits.dart';
+
 class PopularScreen extends StatefulWidget {
   const PopularScreen(
-      {super.key, required this.leftPadding, required this.rightPadding});
+      {super.key,
+      required this.leftPadding,
+      required this.rightPadding,
+      required this.subreddit});
   final double leftPadding;
   final double rightPadding;
+  final Subreddit subreddit;
 
   @override
   State<PopularScreen> createState() => _PopularScreenState();
 }
 
-class _PopularScreenState extends State<PopularScreen>
-    with TickerProviderStateMixin {
+class _PopularScreenState extends State<PopularScreen> {
+  late List<UserContent> data = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    setState(() => data = []);
+    final res =
+        await subreddit.getSubredditPostsFiltered(widget.subreddit, "popular");
+    setState(() => data = res);
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (data.isEmpty) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return ListView.builder(
-      itemCount: 10,
+      itemCount: data.length,
       itemBuilder: (context, index) {
+        final UserContent item = data[index];
+        final Map<String, dynamic> itemJson = jsonDecode(item.toString());
+
+        String preview =
+            itemJson['preview']?['images'][0]['source']['url'] ?? '';
+        String previewFixed = preview.replaceAll('&amp;', '&');
+
         return Column(
           children: [
             PostPreview(
-              subreddit: 'r/FlutterDev',
-              username: 'u/DEUX BEUH VEURRRR',
-              title: 'Ludovic loves Flutter',
+              subreddit: itemJson['subreddit_name_prefixed'],
+              username: 'u/' + itemJson['author'],
+              title: itemJson['title'],
               profilePicture: 'https://googleflutter.com/sample_image.jpg',
-              image: 'https://googleflutter.com/sample_image.jpg',
-              timestamp: 1620000000,
-              upVotes: 100,
+              image: previewFixed,
+              url: itemJson['url'],
+              timestamp: itemJson['created_utc'].round(),
+              upVotes: itemJson['ups'],
               downVotes: 0,
               comments: 10,
               leftPadding: widget.leftPadding,

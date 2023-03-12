@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 
 class UpvotesScreen extends StatefulWidget {
-  const UpvotesScreen({super.key, required this.leftPadding, required this.rightPadding});
+  const UpvotesScreen(
+      {super.key, required this.leftPadding, required this.rightPadding});
   final double leftPadding;
   final double rightPadding;
 
@@ -25,6 +26,7 @@ class _UpvotesScreenState extends State<UpvotesScreen> {
               profilePicture: 'https://googleflutter.com/sample_image.jpg',
               image: 'https://googleflutter.com/sample_image.jpg',
               timestamp: 1620000000,
+              url: "",
               upVotes: 100,
               downVotes: 0,
               comments: 10,

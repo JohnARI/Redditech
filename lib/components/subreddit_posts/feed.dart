@@ -33,6 +33,7 @@ class _FeedState extends State<Feed> with TickerProviderStateMixin {
                 PopularScreen(
                   leftPadding: 24.0,
                   rightPadding: 24.0,
+                  subreddit: widget.subreddit,
                 ),
                 LatestScreen(
                   leftPadding: 24.0,

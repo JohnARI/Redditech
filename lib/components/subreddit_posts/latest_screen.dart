@@ -49,9 +49,9 @@ class _LatestScreenState extends State<LatestScreen> {
         final UserContent item = data[index];
         final Map<String, dynamic> itemJson = jsonDecode(item.toString());
 
-        print("=============================");
-        print(itemJson);
-        print("=============================");
+        String preview =
+            itemJson['preview']?['images'][0]['source']['url'] ?? '';
+        String previewFixed = preview.replaceAll('&amp;', '&');
 
         return Column(
           children: [
@@ -60,9 +60,10 @@ class _LatestScreenState extends State<LatestScreen> {
               username: 'u/' + itemJson['author'],
               title: itemJson['title'],
               profilePicture: 'https://googleflutter.com/sample_image.jpg',
-              image: 'https://googleflutter.com/sample_image.jpg',
-              timestamp: 1620000000,
-              upVotes: 100,
+              image: previewFixed,
+              url: itemJson['url'],
+              timestamp: itemJson['created_utc'].round(),
+              upVotes: itemJson['ups'],
               downVotes: 0,
               comments: 10,
               leftPadding: widget.leftPadding,
