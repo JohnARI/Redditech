@@ -5,9 +5,9 @@ import 'package:redditech/components/appbar_background_img.dart';
 import 'package:redditech/components/overflow_img.dart';
 import 'package:redditech/components/subreddit_description.dart';
 
-import 'package:redditech/screens/home/popular_screen.dart';
-import 'package:redditech/screens/home/top_screen.dart';
 import '../../components/subreddit_posts/latest_screen.dart';
+import '../../components/subreddit_posts/upvotes_screen.dart';
+import '../../components/subreddit_posts/popular_screen.dart';
 import '../../services/api_subreddits.dart';
 
 class CommunityInfoScreen extends StatefulWidget {
@@ -170,18 +170,18 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                         controller: tabController,
                         children: [
                           PopularScreen(
-                            leftPadding: 0.0,
-                            rightPadding: 0.0,
-                          ),
+                              leftPadding: 0.0,
+                              rightPadding: 0.0,
+                              subreddit: widget.subreddit!),
                           LatestScreen(
                             leftPadding: 0.0,
                             rightPadding: 0.0,
                             subreddit: widget.subreddit!,
                           ),
-                          TopScreen(
-                            leftPadding: 0.0,
-                            rightPadding: 0.0,
-                          ),
+                          UpvotesScreen(
+                              leftPadding: 0.0,
+                              rightPadding: 0.0,
+                              subreddit: widget.subreddit!),
                         ],
                       ),
                     ),
