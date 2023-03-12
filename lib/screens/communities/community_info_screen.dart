@@ -59,8 +59,10 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
         children: [
           AppbarBackgroundImg(
               subredditName: 'r/${widget.subredditName}',
-              backgroundImg: SafeArea(
-                  child: Image.network("https://source.unsplash.com/random")),
+              backgroundImg: Image.network(
+                "https://source.unsplash.com/random",
+                fit: BoxFit.cover,
+              ),
               overflowImg: Image.network(
                 "https://source.unsplash.com/random",
                 height: 64.0,
