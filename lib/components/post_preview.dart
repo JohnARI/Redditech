@@ -170,8 +170,11 @@ class _PostPreviewState extends State<PostPreview> {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.3),
                 )
-              : RichText(
-                  text: TextSpan(
+              : Padding(
+                  padding: EdgeInsets.only(
+                      left: widget.leftPadding, right: widget.rightPadding),
+                  child: RichText(
+                      text: TextSpan(
                     children: [
                       TextSpan(
                         text: widget.url,
@@ -182,8 +185,7 @@ class _PostPreviewState extends State<PostPreview> {
                           },
                       ),
                     ],
-                  ),
-                ),
+                  ))),
           Padding(
             padding:
                 const EdgeInsets.only(left: 24, right: 24, bottom: 16, top: 16),
