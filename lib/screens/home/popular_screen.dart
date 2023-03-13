@@ -118,6 +118,7 @@ class _PopularScreenState extends State<PopularScreen>
                               url: data[i]['url'],
                               timestamp: data[i]['created_utc'].round(),
                               upVotes: data[i]['ups'],
+                              text: data[i]['selftext'] ?? '',
                               downVotes: 0,
                               comments: 10,
                               leftPadding: widget.leftPadding,

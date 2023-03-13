@@ -13,6 +13,7 @@ class PostPreview extends StatefulWidget {
       required this.title,
       required this.profilePicture,
       required this.image,
+      required this.text,
       required this.timestamp,
       required this.upVotes,
       required this.downVotes,
@@ -27,6 +28,7 @@ class PostPreview extends StatefulWidget {
   final String profilePicture;
   final String image;
   final String url;
+  final String text;
   final int timestamp;
   final int upVotes;
   final int downVotes;
@@ -130,6 +132,27 @@ class _PostPreviewState extends State<PostPreview> {
                       widget.title,
                       style: const TextStyle(
                           fontSize: 19.2, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: widget.leftPadding,
+                        right: widget.rightPadding,
+                        bottom: 16.0),
+                    child: Text(
+                      widget.text,
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),

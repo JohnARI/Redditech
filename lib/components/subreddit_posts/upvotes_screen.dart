@@ -65,6 +65,7 @@ class _UpvotesScreenState extends State<UpvotesScreen> {
               url: itemJson['url'],
               timestamp: itemJson['created_utc'].round(),
               upVotes: itemJson['ups'],
+              text: itemJson['selftext'] ?? '',
               downVotes: 0,
               comments: 10,
               leftPadding: widget.leftPadding,
