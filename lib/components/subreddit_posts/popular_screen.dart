@@ -4,6 +4,7 @@ import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 
+import '../../models/subreddit.dart';
 import '../../services/api_subreddits.dart';
 
 class PopularScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class PopularScreen extends StatefulWidget {
 }
 
 class _PopularScreenState extends State<PopularScreen> {
-  late List<UserContent> data = [];
+  late List<SubredditPost> data = [];
 
   @override
   void initState() {
@@ -46,12 +47,14 @@ class _PopularScreenState extends State<PopularScreen> {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
-        final UserContent item = data[index];
+        final UserContent item = data[index].userContent;
         final Map<String, dynamic> itemJson = jsonDecode(item.toString());
 
         String preview =
             itemJson['preview']?['images'][0]['source']['url'] ?? '';
         String previewFixed = preview.replaceAll('&amp;', '&');
+
+        print(data[index].redditorProfileImgUrl);
 
         return Column(
           children: [
@@ -59,7 +62,7 @@ class _PopularScreenState extends State<PopularScreen> {
               subreddit: itemJson['subreddit_name_prefixed'],
               username: 'u/' + itemJson['author'],
               title: itemJson['title'],
-              profilePicture: 'https://googleflutter.com/sample_image.jpg',
+              profilePicture: data[index].redditorProfileImgUrl,
               image: previewFixed,
               url: itemJson['url'],
               timestamp: itemJson['created_utc'].round(),

@@ -1,3 +1,5 @@
+import 'package:draw/draw.dart';
+
 class SubredditModel {
   final String subredditName, subredditDescription, community;
   final int numberOfMembers;
@@ -10,11 +12,7 @@ const lorem =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet aliquam luctus, nisi nunc aliquam ante, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc sit amet aliquam luctus, nisi nunc aliquam ante, eget aliquam nunc nisl sit amet nisl.";
 
 List<SubredditModel> subredditsModel = [
-  SubredditModel(
-      'ChaseAfterYourDreams',
-      lorem,
-      'ChaseAfterYourDreams',
-      1000),
+  SubredditModel('ChaseAfterYourDreams', lorem, 'ChaseAfterYourDreams', 1000),
   SubredditModel('FlutterDev', lorem, 'Flutter', 667),
   SubredditModel('HtmlDev', lorem, 'HTML', 0),
   SubredditModel('CssDev', lorem, 'CSS', 0),
@@ -26,3 +24,9 @@ List<SubredditModel> subredditsModel = [
   SubredditModel('CppDev', lorem, 'C++', 19500),
   SubredditModel('C#Dev', lorem, 'C#', 19501),
 ];
+
+class SubredditPost {
+  late UserContent userContent;
+  late Redditor redditor;
+  late String redditorProfileImgUrl;
+}

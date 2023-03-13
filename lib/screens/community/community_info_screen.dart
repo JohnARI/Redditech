@@ -163,7 +163,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                           flex: 3,
                           child: TabBarView(
                             controller: tabController,
-                            children: [
+                            children: const [
                               PopularScreen(
                                 leftPadding: 0.0,
                                 rightPadding: 0.0,

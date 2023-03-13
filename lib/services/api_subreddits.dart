@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:draw/draw.dart';
 import 'package:redditech/services/api_client.dart';
+
+import '../models/subreddit.dart';
 
 class ApiSubreddit {
   Future<List<Subreddit>> getMySubreddits() async {
@@ -70,7 +73,7 @@ class ApiSubreddit {
   /// - top
   /// - latest
   /// - popular
-  Future<List<UserContent>> getSubredditPostsFiltered(
+  Future<List<SubredditPost>> getSubredditPostsFiltered(
       Subreddit subreddit, String filter) async {
     switch (filter) {
       case "top":
@@ -80,18 +83,47 @@ class ApiSubreddit {
       case "popular":
         return await convertStreamToList(subreddit.hot(limit: 10));
       default:
-        return List<UserContent>.empty();
+        return List<SubredditPost>.empty();
     }
   }
 
-  Future<List<UserContent>> convertStreamToList(
+  Future<List<SubredditPost>> convertStreamToList(
       Stream<UserContent> stream) async {
-    List<UserContent> listUserContent = [];
+    List<SubredditPost> dataList = [];
+
     await for (UserContent userContent in stream) {
-      listUserContent.add(userContent);
+      SubredditPost data = SubredditPost();
+      data.userContent = userContent;
+
+      final Map<String, dynamic> userContentJson =
+          jsonDecode(data.userContent.toString());
+
+      Redditor? author;
+      author = await getRedditor(userContentJson['author']);
+      data.redditor = author!;
+
+      final Map<String, dynamic> authorJson =
+          jsonDecode(data.redditor.toString());
+      data.redditorProfileImgUrl =
+          authorJson['icon_img'].replaceAll("&amp;", "&");
+
+      dataList.add(data);
     }
 
-    return listUserContent;
+    return dataList;
+  }
+
+  Future<Redditor?> getRedditor(String username) async {
+    try {
+      RedditorRef? author = api.reddit?.redditor(username);
+
+      Redditor? redditor = await author?.populate();
+
+      return redditor!;
+    } catch (exception) {
+      print(exception);
+      return Future<Redditor?>.value(null);
+    }
   }
 }
 

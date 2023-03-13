@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 import 'package:redditech/services/api_subreddits.dart';
 
+import '../../models/subreddit.dart';
+
 class UpvotesScreen extends StatefulWidget {
   const UpvotesScreen(
       {super.key,
@@ -20,7 +22,7 @@ class UpvotesScreen extends StatefulWidget {
 }
 
 class _UpvotesScreenState extends State<UpvotesScreen> {
-  late List<UserContent> data = [];
+  late List<SubredditPost> data = [];
 
   @override
   void initState() {
@@ -45,7 +47,7 @@ class _UpvotesScreenState extends State<UpvotesScreen> {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
-        final UserContent item = data[index];
+        final UserContent item = data[index].userContent;
         final Map<String, dynamic> itemJson = jsonDecode(item.toString());
 
         String preview =
@@ -58,7 +60,7 @@ class _UpvotesScreenState extends State<UpvotesScreen> {
               subreddit: itemJson['subreddit_name_prefixed'],
               username: 'u/' + itemJson['author'],
               title: itemJson['title'],
-              profilePicture: 'https://googleflutter.com/sample_image.jpg',
+              profilePicture: data[index].redditorProfileImgUrl,
               image: previewFixed,
               url: itemJson['url'],
               timestamp: itemJson['created_utc'].round(),

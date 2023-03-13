@@ -4,6 +4,7 @@ import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/components/post_preview.dart';
 
+import '../../models/subreddit.dart';
 import '../../services/api_subreddits.dart';
 
 class LatestScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class LatestScreen extends StatefulWidget {
 }
 
 class _LatestScreenState extends State<LatestScreen> {
-  late List<UserContent> data = [];
+  late List<SubredditPost> data = [];
 
   @override
   void initState() {
@@ -46,7 +47,7 @@ class _LatestScreenState extends State<LatestScreen> {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
-        final UserContent item = data[index];
+        final UserContent item = data[index].userContent;
         final Map<String, dynamic> itemJson = jsonDecode(item.toString());
 
         String preview =
@@ -59,7 +60,7 @@ class _LatestScreenState extends State<LatestScreen> {
               subreddit: itemJson['subreddit_name_prefixed'],
               username: 'u/' + itemJson['author'],
               title: itemJson['title'],
-              profilePicture: 'https://googleflutter.com/sample_image.jpg',
+              profilePicture: data[index].redditorProfileImgUrl,
               image: previewFixed,
               url: itemJson['url'],
               timestamp: itemJson['created_utc'].round(),
