@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:redditech/common/const.dart';
 import 'package:redditech/components/appbar_background_img.dart';
+import 'package:redditech/screens/post/image_detail.dart';
 
 class PostPage extends StatefulWidget {
   const PostPage({
@@ -66,10 +67,23 @@ class _PostPageState extends State<PostPage> {
                         style: const TextStyle(
                             fontSize: 16.0, fontWeight: FontWeight.w600)),
                   ),
-                  Image.network(widget.image,
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.3),
+                  GestureDetector(
+                    child: Hero(
+                      tag: "postImage",
+                      child: Image.network(widget.image,
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.3),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ImageDetail(
+                                    image: widget.image,
+                                  )));
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Row(

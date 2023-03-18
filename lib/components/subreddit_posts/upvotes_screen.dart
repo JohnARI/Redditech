@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:draw/draw.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/post_preview.dart';
 import 'package:redditech/services/api_subreddits.dart';
 
@@ -40,9 +42,7 @@ class _UpvotesScreenState extends State<UpvotesScreen> {
   @override
   Widget build(BuildContext context) {
     if (data.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Loader();
     }
     return ListView.builder(
       itemCount: data.length,

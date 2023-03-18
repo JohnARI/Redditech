@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
 import 'package:redditech/components/tabbar.dart';
-import 'package:redditech/screens/home/latest_screen.dart';
-import 'package:redditech/screens/home/popular_screen.dart';
+import 'package:redditech/screens/home/latest_home_screen.dart';
+import 'package:redditech/screens/home/popular_home_screen.dart';
 import 'package:redditech/screens/home/top_screen.dart';
 
 class HomeScreen extends StatefulWidget {

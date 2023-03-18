@@ -5,7 +5,7 @@ import 'package:redditech/components/subreddit_list.dart';
 import 'package:draw/draw.dart';
 import 'package:redditech/services/api_subreddits.dart';
 import '../../common/const.dart';
-import '../communities/community_info_screen.dart';
+import '../community/community_info_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

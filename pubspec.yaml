@@ -23,6 +23,9 @@ dependencies:
   google_fonts: ^4.0.3
   provider: ^6.0.5
   url_launcher: ^6.1.10
+  smooth_page_indicator: ^1.0.1
+  lottie: ^2.2.0
+  animated_svg: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -47,3 +50,4 @@ flutter:
   assets:
     - assets/images/
     - assets/images/logos/
+    - assets/lottie/

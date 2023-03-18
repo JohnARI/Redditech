@@ -15,7 +15,21 @@ class MyApp extends StatelessWidget {
       title: 'Redditech',
       home: const SplashScreenWrapper(),
       theme: ThemeData(
-        fontFamily: 'IBM Plex Sans Regular',
+        textTheme: const TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: 36,
+            color: Colors.black,
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 32,
+            color: Colors.black,
+          ),
+          headlineSmall: TextStyle(
+            fontSize: 24,
+            color: Colors.black,
+          ),
+        ),
+        fontFamily: 'IBM Plex Sans',
       ),
     );
   }

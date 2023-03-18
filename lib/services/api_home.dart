@@ -3,35 +3,34 @@ import 'package:draw/draw.dart';
 import 'package:redditech/services/api_client.dart';
 
 class ApiHome {
-  Future<Stream<UserContent>?> getPopular() async {
+  Stream<UserContent>? getPopular() {
     try {
-      Stream<UserContent>? popular = api.reddit?.front.hot(limit: 10);
+      final Stream<UserContent>? popular =
+          api.reddit?.front.hot(limit: 10).asBroadcastStream();
 
       return popular;
     } catch (exception) {
-      print(exception);
-      return Future<Stream<UserContent>?>.value(null);
+      return null;
     }
   }
 
+
   Future<Stream<UserContent>?> getTop() async {
     try {
-      Stream<UserContent>? popular = api.reddit?.front.top(limit: 10);
+      Stream<UserContent>? popular = api.reddit?.front.top(limit: 10).asBroadcastStream();
 
       return popular;
     } catch (exception) {
-      print(exception);
       return Future<Stream<UserContent>?>.value(null);
     }
   }
 
   Future<Stream<UserContent>?> getLatest() async {
     try {
-      Stream<UserContent>? popular = api.reddit?.front.newest(limit: 10);
+      Stream<UserContent>? popular = api.reddit?.front.newest(limit: 10).asBroadcastStream();
 
       return popular;
     } catch (exception) {
-      print(exception);
       return Future<Stream<UserContent>?>.value(null);
     }
   }
@@ -44,7 +43,6 @@ class ApiHome {
 
       return redditor!;
     } catch (exception) {
-      print(exception);
       return Future<Redditor?>.value(null);
     }
   }

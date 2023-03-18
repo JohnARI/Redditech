@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:redditech/common/const.dart';
+import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/profile/header.dart';
 import 'package:draw/draw.dart';
 import 'package:redditech/services/api_profile.dart';
@@ -38,7 +40,7 @@ class _ProfileState extends State<Profile> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting ||
                     !snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Loader();
                 }
 
                 if (snapshot.hasError) {

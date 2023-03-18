@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:redditech/screens/auth/auth.dart';
 import 'dart:async';
 import 'package:redditech/screens/main_screen.dart';
+import 'package:redditech/screens/welcome/main_welcome_screen.dart';
 import 'package:redditech/services/api_client.dart';
 
 class SplashScreenWrapper extends StatefulWidget {
@@ -17,24 +18,17 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
 
   Future<String> checkIsAuth() async {
     try {
-      String? credentials = await storage.read(key: "credentials");
+      // String? credentials = await storage.read(key: "credentials");
 
-      api.reddit = Reddit.restoreAuthenticatedInstance(credentials!,
-          clientId: "LSrTT-EA8Fm4-0KtiQFV3Q",
-          clientSecret: "",
-          userAgent: "Rien",
-          configUri: Uri.parse("draw.ini"),
-          redirectUri: Uri.parse("rien://success"));
-
-      bool isAuth = await api.checkIsAuth();
-
-      if (isAuth) {
-        return "homeScreen";
-      }
+      // api.reddit = Reddit.restoreAuthenticatedInstance(credentials!,
+      //     clientId: "LSrTT-EA8Fm4-0KtiQFV3Q",
+      //     clientSecret: "",
+      //     userAgent: "Rien",
+      //     configUri: Uri.parse("draw.ini"),
+      //     redirectUri: Uri.parse("rien://success"));
 
       return "";
     } catch (exception) {
-      // print("nope");
       return "";
     }
   }
@@ -45,7 +39,7 @@ class _SlpashScreenWrapperState extends State<SplashScreenWrapper> {
         future: checkIsAuth(),
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.data == "") {
-            return const AuthScreen();
+            return const WelcomeScreen();
           } else {
             return const MainScreen();
           }

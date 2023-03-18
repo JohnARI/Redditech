@@ -28,21 +28,27 @@ class Api {
 
   Future<bool> authenticate(context) async {
     try {
-      final result = await FlutterWebAuth.authenticate(
+      
+      final String result = await FlutterWebAuth.authenticate(
           url: authUrl.toString(), callbackUrlScheme: "rien");
 
-      String? code = Uri.parse(result).queryParameters['code'];
+      final Uri uri = Uri.parse(result);
+      final String code = uri.queryParameters['code']!;
 
-      String? credentials = await storage.read(key: "credentials");
-      if (credentials!.isNotEmpty) {
-        await reddit?.auth.refresh();
-      } else {
-        await reddit?.auth.authorize(code.toString());
-      }
 
-      await storage.write(
-          key: "credentials", value: api.reddit!.auth.credentials.toJson());
-      await storage.write(key: "token", value: code);
+
+      // String? credentials = await storage.read(key: "credentials");
+      // if (credentials!.isNotEmpty) {
+      //   await reddit?.auth.refresh();
+      // } else {
+      //   await reddit?.auth.authorize(code.toString());
+      // }
+
+      // await storage.write(
+      //     key: "credentials", value: api.reddit!.auth.credentials.toJson());
+      // await storage.write(key: "token", value: code);
+
+      await reddit?.auth.authorize(code.toString());
 
       Navigator.pushReplacement(
           context,

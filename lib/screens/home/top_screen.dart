@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/post_preview.dart';
 import "package:redditech/services/api_home.dart";
 import 'package:draw/draw.dart';
@@ -32,7 +34,7 @@ class _TopScreenState extends State<TopScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting ||
               !snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return const Loader();
           }
 
           if (snapshot.hasError) {
@@ -52,7 +54,7 @@ class _TopScreenState extends State<TopScreen> {
                 return SizedBox(
                     height: MediaQuery.of(context).copyWith().size.height,
                     width: MediaQuery.of(context).copyWith().size.width,
-                    child: const Center(child: CircularProgressIndicator()));
+                    child: const Loader());
               }
 
               if (snapshot.hasError) {
@@ -87,8 +89,7 @@ class _TopScreenState extends State<TopScreen> {
                                       .copyWith()
                                       .size
                                       .width,
-                                  child: const Center(
-                                      child: CircularProgressIndicator()));
+                                  child: const Loader());
                             }
 
                             if (snapshot.hasError) {

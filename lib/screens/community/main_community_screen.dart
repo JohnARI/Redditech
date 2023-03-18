@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/subreddit_list.dart';
-import 'package:redditech/screens/communities/community_info_screen.dart';
+import 'package:redditech/screens/community/community_info_screen.dart';
 import 'package:redditech/services/api_subreddits.dart';
 import 'package:draw/draw.dart';
 
@@ -74,7 +76,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
           } else {
             return Container(
                 decoration: containerBorder,
-                child: const Center(child: CircularProgressIndicator()));
+                child: const Loader());
           }
         },
       ),

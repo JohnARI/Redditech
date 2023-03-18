@@ -25,7 +25,7 @@ class ApiSubreddit {
   Future<List<Subreddit>> searchSubreddit(String query) async {
     try {
       Stream<SubredditRef>? mySearch =
-          api.reddit!.subreddits.search(query, limit: 25);
+          api.reddit!.subreddits.search(query, limit: 10);
       List<Subreddit> listSubReddits = [];
 
       await for (SubredditRef subreddit in mySearch) {
@@ -100,7 +100,9 @@ class ApiSubreddit {
 
       Redditor? author;
       author = await getRedditor(userContentJson['author']);
-      data.redditor = author!;
+      if (author != null) {
+        data.redditor = author;
+      }
 
       final Map<String, dynamic> authorJson =
           jsonDecode(data.redditor.toString());

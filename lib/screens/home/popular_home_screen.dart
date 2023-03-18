@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:draw/draw.dart';
+import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/post_preview.dart';
 import "package:redditech/services/api_home.dart";
 
@@ -24,7 +24,7 @@ class _PopularScreenState extends State<PopularScreen>
   @override
   void initState() {
     super.initState();
-    popular = home.getPopular();
+    popular = Future<Stream<UserContent>?>.value(home.getPopular());
   }
 
   @override
@@ -34,7 +34,7 @@ class _PopularScreenState extends State<PopularScreen>
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting ||
               !snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return const Loader();
           }
 
           if (snapshot.hasError) {
@@ -42,7 +42,6 @@ class _PopularScreenState extends State<PopularScreen>
           }
 
           final items = snapshot.data!;
-          // List<UserContent> data = [];
 
           popularPosts = items.toList();
 
@@ -54,7 +53,7 @@ class _PopularScreenState extends State<PopularScreen>
                 return SizedBox(
                     height: MediaQuery.of(context).copyWith().size.height,
                     width: MediaQuery.of(context).copyWith().size.width,
-                    child: const Center(child: CircularProgressIndicator()));
+                    child: const Loader());
               }
 
               if (snapshot.hasError) {
@@ -90,7 +89,7 @@ class _PopularScreenState extends State<PopularScreen>
                                       .size
                                       .width,
                                   child: const Center(
-                                      child: CircularProgressIndicator()));
+                                      child: Loader()));
                             }
 
                             if (snapshot.hasError) {
@@ -103,9 +102,7 @@ class _PopularScreenState extends State<PopularScreen>
 
                             final String profileSrcFixed =
                                 author['icon_img'].replaceAll('&amp;', '&');
-                            String preview = data[i]['preview']?['images'][0]
-                                    ['source']['url'] ??
-                                '';
+                            String preview = data[i]['url']?.toString() ?? '';
                             String previewFixed =
                                 preview.replaceAll('&amp;', '&');
 

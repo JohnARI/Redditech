@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:redditech/common/const.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:redditech/screens/post/post.dart';
 
 class PostPreview extends StatefulWidget {
@@ -142,10 +141,12 @@ class _PostPreviewState extends State<PostPreview> {
               ? Padding(
                   padding: EdgeInsets.only(
                       left: widget.leftPadding, right: widget.rightPadding),
-                  child: Image.network(widget.image,
-                      // fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.3),
+                  child: Container(
+                    color: dark0,
+                    child: Image.network(widget.image,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.3),
+                  ),
                 )
               : RichText(
                   text: TextSpan(
