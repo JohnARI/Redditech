@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:redditech/common/const.dart';
@@ -70,7 +72,10 @@ class _PostPageState extends State<PostPage> {
                   GestureDetector(
                     child: Hero(
                       tag: "postImage",
-                      child: Image.network(widget.image,
+                      child: Image.network(
+                          widget.image != ""
+                              ? widget.image
+                              : "https://source.unsplash.com/random",
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.3),
@@ -108,72 +113,76 @@ class _PostPageState extends State<PostPage> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Container(
-                        color: light1,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 16,
-                                    backgroundImage:
-                                        NetworkImage(widget.profilePicture),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: const [
-                                        Text(
-                                          'u/username •',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        Text(
-                                          '1h',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w300),
-                                        ),
-                                      ])
-                                    ],
-                                  ),
-                                ],
-                              ),
+                      final random = Random();
+                      final username = 'u/GigaChad n.${random.nextInt(100)}';
+                      final comment = 'Le commentaire carrément incroyable de la mort qui tue ${random.nextInt(100)}';
+                      final timeAgo = '${random.nextInt(59)}m';
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 16,
+                                  backgroundImage:
+                                      NetworkImage(widget.profilePicture),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(children: [
+                                      Text(
+                                        '$username •',
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(
+                                        timeAgo,
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w300),
+                                      ),
+                                    ])
+                                  ],
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: Row(
-                                children: const [
-                                  Flexible(
-                                    child: Text(
-                                      'TESTqsdqsdsazeazeazezaezaeazeazezaeazezaeazeqdqsdqsdqsdqsdqsdqs',
-                                      style: TextStyle(fontSize: 14),
-                                    ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    comment,
+                                    style: const TextStyle(fontSize: 14),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: Row(
-                                children: const [
-                                  Icon(Icons.keyboard_arrow_up,
-                                      color: neutralDark2),
-                                  SizedBox(width: 4),
-                                  Text('1'),
-                                  SizedBox(width: 16),
-                                  Icon(Icons.keyboard_arrow_down,
-                                      color: neutralDark2),
-                                ],
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: const [
+                                Icon(Icons.keyboard_arrow_up,
+                                    color: neutralDark2),
+                                SizedBox(width: 4),
+                                Text('1'),
+                                SizedBox(width: 16),
+                                Icon(Icons.keyboard_arrow_down,
+                                    color: neutralDark2),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          const Divider(
+                            color: neutralDark2,
+                            thickness: 0.2,
+                          ),
+                        ],
                       );
                     },
                   ),

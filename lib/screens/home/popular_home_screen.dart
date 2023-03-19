@@ -102,7 +102,7 @@ class _PopularScreenState extends State<PopularScreen>
 
                             final String profileSrcFixed =
                                 author['icon_img'].replaceAll('&amp;', '&');
-                            String preview = data[i]['url']?.toString() ?? '';
+                            String preview = data[i]['preview']?['images'][0]['source']['url'] ?? '';
                             String previewFixed =
                                 preview.replaceAll('&amp;', '&');
 
@@ -115,8 +115,8 @@ class _PopularScreenState extends State<PopularScreen>
                               url: data[i]['url'],
                               timestamp: data[i]['created_utc'].round(),
                               upVotes: data[i]['ups'],
-                              downVotes: 0,
-                              comments: 10,
+                              downVotes: data[i]['downs'],
+                              comments: data[i]['num_comments'],
                               leftPadding: widget.leftPadding,
                               rightPadding: widget.rightPadding,
                             );

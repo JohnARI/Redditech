@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:draw/draw.dart';
-import 'package:lottie/lottie.dart';
 import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/post_preview.dart';
 import "package:redditech/services/api_home.dart";
@@ -117,8 +116,8 @@ class _LatestScreenState extends State<LatestScreen> {
                               url: data[i]['url'],
                               timestamp: data[i]['created_utc'].round(),
                               upVotes: data[i]['ups'],
-                              downVotes: 0,
-                              comments: 10,
+                              downVotes: data[i]['downs'],
+                              comments: data[i]['num_comments'],
                               leftPadding: widget.leftPadding,
                               rightPadding: widget.rightPadding,
                             );

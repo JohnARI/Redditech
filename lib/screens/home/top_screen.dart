@@ -120,8 +120,8 @@ class _TopScreenState extends State<TopScreen> {
                               url: data[i]['url'],
                               timestamp: data[i]['created_utc'].round(),
                               upVotes: data[i]['ups'],
-                              downVotes: 0,
-                              comments: 10,
+                              downVotes: data[i]['downs'],
+                              comments: data[i]['num_comments'],
                               leftPadding: widget.leftPadding,
                               rightPadding: widget.rightPadding,
                             );

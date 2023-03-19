@@ -63,12 +63,7 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
                 "https://source.unsplash.com/random",
                 fit: BoxFit.cover,
               ),
-              overflowImg: Image.network(
-                "https://source.unsplash.com/random",
-                height: 64.0,
-                width: 64.0,
-                fit: BoxFit.cover,
-              )),
+              overflowImg: Container()),
           Padding(
             padding: const EdgeInsets.only(top: 120.0),
             child: Container(
@@ -190,25 +185,22 @@ class _CommunityInfoScreenState extends State<CommunityInfoScreen>
               ),
             ),
           ),
-          (() {
-            if (widget.iconImg.isNotEmpty) {
-              return OverflowImg(
+          widget.iconImg.isNotEmpty
+              ? OverflowImg(
                   backgroundImg: Image.network(
-                widget.iconImg,
-                height: 64.0,
-                width: 64.0,
-                fit: BoxFit.cover,
-              ));
-            }
-            return OverflowImg(
-              backgroundImg: Image.asset(
-                'assets/images/giga_chad.jpg',
-                height: 64.0,
-                width: 64.0,
-                fit: BoxFit.cover,
-              ),
-            );
-          }()),
+                  widget.iconImg,
+                  height: 64.0,
+                  width: 64.0,
+                  fit: BoxFit.cover,
+                ))
+              : OverflowImg(
+                  backgroundImg: Image.asset(
+                    'assets/images/giga_chad.jpg',
+                    height: 64.0,
+                    width: 64.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
         ],
       ),
     );

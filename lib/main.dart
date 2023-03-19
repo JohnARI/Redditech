@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Redditech',
+      title: 'RIEN',
       home: const SplashScreenWrapper(),
       theme: ThemeData(
         textTheme: const TextTheme(

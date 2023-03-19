@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:redditech/components/loader.dart';
 import 'package:redditech/components/search_bar.dart';
 import 'package:redditech/components/subreddit_list.dart';
 import 'package:draw/draw.dart';
@@ -17,7 +18,8 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   late Future<List<Subreddit>> searchSubreddit;
   late TextEditingController textEditingController = TextEditingController();
-  late String inputQuery = "";
+  late String inputQuery;
+  bool isSearching = false;
 
   @override
   void initState() {
@@ -32,10 +34,15 @@ class _SearchScreenState extends State<SearchScreen> {
         padding: const EdgeInsets.only(
             top: 20, bottom: 59), // 59 if search bar is present, 0 if not
         decoration: containerBorder,
-        child: FutureBuilder<List<Subreddit>>(
+        child: isSearching
+            ? const Center(child: Loader())
+            : 
+        
+        FutureBuilder<List<Subreddit>>(
           future: searchSubreddit,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              isSearching = false;
               final items = snapshot.data!;
               return ListView.builder(
                 itemCount: items.length,
@@ -78,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
             } else {
               return Container(
                   decoration: containerBorder,
-                  child: const Center(child: CircularProgressIndicator()));
+                  child: const Center(child: Loader()));
             }
           },
         ),
@@ -86,8 +93,13 @@ class _SearchScreenState extends State<SearchScreen> {
       SearchBar(
           callback: (value) => {
                 setState(() {
+                  isSearching = true;
                   inputQuery = value;
-                  searchSubreddit = subreddit.searchSubreddit(inputQuery);
+                  searchSubreddit = subreddit.searchSubreddit(inputQuery)..then((value) {
+                    setState(() {
+                      isSearching = false;
+                    });
+                  });
                 })
               }),
     ]);

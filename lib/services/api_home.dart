@@ -6,7 +6,7 @@ class ApiHome {
   Stream<UserContent>? getPopular() {
     try {
       final Stream<UserContent>? popular =
-          api.reddit?.front.hot(limit: 10).asBroadcastStream();
+          api.reddit?.front.hot(limit: 10);
 
       return popular;
     } catch (exception) {
@@ -17,7 +17,7 @@ class ApiHome {
 
   Future<Stream<UserContent>?> getTop() async {
     try {
-      Stream<UserContent>? popular = api.reddit?.front.top(limit: 10).asBroadcastStream();
+      Stream<UserContent>? popular = api.reddit?.front.top(limit: 10);
 
       return popular;
     } catch (exception) {
@@ -27,7 +27,7 @@ class ApiHome {
 
   Future<Stream<UserContent>?> getLatest() async {
     try {
-      Stream<UserContent>? popular = api.reddit?.front.newest(limit: 10).asBroadcastStream();
+      Stream<UserContent>? popular = api.reddit?.front.newest(limit: 10);
 
       return popular;
     } catch (exception) {

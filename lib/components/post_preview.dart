@@ -126,40 +126,28 @@ class _PostPreviewState extends State<PostPreview> {
                         right: widget.rightPadding,
                         bottom: 16.0),
                     child: Text(
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       widget.title,
                       style: const TextStyle(
-                          fontSize: 19.2, fontWeight: FontWeight.w600),
+                          fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          widget.image != 'default' &&
-                  widget.image != '' &&
-                  widget.image != 'msfw'
-              ? Padding(
+           Padding(
                   padding: EdgeInsets.only(
                       left: widget.leftPadding, right: widget.rightPadding),
                   child: Container(
                     color: dark0,
-                    child: Image.network(widget.image,
+                    child: Image.network(widget.image != 'default' &&
+                  widget.image != '' &&
+                  widget.image != 'msfw'
+              ? widget.image: "https://source.unsplash.com/random",
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.3),
-                  ),
-                )
-              : RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: widget.url,
-                        style: const TextStyle(color: medium0),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // launch(widget.url);
-                          },
-                      ),
-                    ],
                   ),
                 ),
           Padding(
